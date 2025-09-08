@@ -5,12 +5,6 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  compiler: {
-    styledComponents: true,
-  },
-  experimental: {
-    appDir: false,
-  },
   // Disable server-side features for static export
   generateEtags: false,
   poweredByHeader: false,

@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[516],{1211:function(n,_,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/MiningRecords",function(){return u(4840)}])}},function(n){n.O(0,[888,774,179],function(){return n(n.s=1211)}),_N_E=n.O()}]);

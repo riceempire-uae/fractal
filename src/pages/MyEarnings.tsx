@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { ArrowLeft, TrendingUp, DollarSign, Clock, FileText, ChevronRight, Pickaxe } from 'lucide-react';
+import { ArrowLeft, TrendingUp, DollarSign, Clock, FileText, ChevronRight } from 'lucide-react';
 
 const EarningsContainer = styled.div`
   min-height: 100vh;
