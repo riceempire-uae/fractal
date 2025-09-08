@@ -60,10 +60,6 @@ const ActionButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
@@ -208,10 +204,6 @@ const RelatedItem = styled.div`
   padding: 1rem 1.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     background: rgba(11, 26, 43, 0.8);

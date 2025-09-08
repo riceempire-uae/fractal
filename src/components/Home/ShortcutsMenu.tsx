@@ -47,10 +47,6 @@ const ViewAllButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
 
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
@@ -80,10 +76,6 @@ const ShortcutItem = styled.button`
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -142,10 +134,6 @@ const ShortcutDescription = styled.div`
 const ShortcutArrow = styled.div`
   color: ${({ theme }) => theme.colors.secondaryText};
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   ${ShortcutItem}:hover & {
     color: ${({ theme }) => theme.colors.accent};

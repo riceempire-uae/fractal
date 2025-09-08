@@ -56,6 +56,10 @@ const TabContainer = styled.div`
   border: 1px solid rgba(245, 192, 74, 0.2);
   margin-bottom: 2rem;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const TabHeader = styled.div`

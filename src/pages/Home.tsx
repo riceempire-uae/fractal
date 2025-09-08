@@ -107,10 +107,6 @@ const CloseButton = styled.button`
   padding: 0.5rem;
   border-radius: 8px;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   width: 36px;
   height: 36px;
   display: flex;
@@ -152,10 +148,6 @@ const Input = styled.input`
   font-weight: 500;
   outline: none;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   min-height: 48px;
   
   &::placeholder {
@@ -194,10 +186,6 @@ const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   border: none;
   min-height: 48px;
   
@@ -257,10 +245,6 @@ const TriggerButton = styled.button`
   padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   margin: 2rem auto;
   display: block;
   

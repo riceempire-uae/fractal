@@ -221,10 +221,6 @@ const ActionButton = styled.button`
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-left: 0.5rem;

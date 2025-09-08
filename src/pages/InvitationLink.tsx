@@ -145,10 +145,6 @@ const CopyButton = styled.button`
   padding: 0.75rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -219,10 +215,6 @@ const ActionButton = styled.button`
   padding: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;

@@ -73,10 +73,6 @@ const AssetCard = styled.div`
   margin-bottom: 1rem;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
@@ -167,10 +163,6 @@ const ActionButton = styled.button`
   color: white;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   padding: 1rem;
   
   &:hover {
@@ -304,10 +296,6 @@ const CancelButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     background: rgba(245, 192, 74, 0.1);
   }
@@ -322,10 +310,6 @@ const ApproveButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     transform: translateY(-2px);
@@ -346,10 +330,6 @@ const DepositButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     transform: translateY(-2px);
@@ -382,10 +362,6 @@ const WithdrawButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
@@ -405,10 +381,6 @@ const SuccessButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     transform: translateY(-2px);

@@ -20,10 +20,6 @@ const ExportButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   box-shadow: ${({ theme }) => theme.shadows.lg};
 
   &:hover {

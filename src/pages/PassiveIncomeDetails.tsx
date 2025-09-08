@@ -99,10 +99,6 @@ const BalanceItem = styled.div`
   border: 1px solid rgba(245, 192, 74, 0.1);
   text-align: center;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   position: relative;
   
   &:hover {
@@ -127,10 +123,6 @@ const HistoryButton = styled.button`
   padding: 0.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,10 +173,6 @@ const BalanceExtractButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,10 +197,6 @@ const BalanceMineButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -237,10 +221,6 @@ const BalanceTransferButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,10 +245,6 @@ const BalanceHistoryButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -387,10 +363,6 @@ const Ftl2TerminateButton = styled.button`
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -449,10 +421,6 @@ const MiningButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -524,10 +492,6 @@ const TerminateButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -551,10 +515,6 @@ const MineGasButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -647,10 +607,6 @@ const RecordRow = styled.div`
   align-items: center;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     background: rgba(11, 26, 43, 0.8);
     border-color: rgba(245, 192, 74, 0.2);
@@ -701,10 +657,6 @@ const ExtractButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -860,10 +812,6 @@ const RadioOption = styled.label`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     background: rgba(11, 26, 43, 0.8);
     border-color: rgba(245, 192, 74, 0.3);
@@ -898,10 +846,6 @@ const CancelButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     background: rgba(245, 192, 74, 0.1);
   }
@@ -916,10 +860,6 @@ const ConfirmButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     transform: translateY(-2px);

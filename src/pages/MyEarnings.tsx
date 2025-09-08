@@ -107,10 +107,6 @@ const ViewRecordButton = styled.button`
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,10 +147,6 @@ const EarningsRow = styled.div`
   margin-bottom: 0.75rem;
   border: 1px solid rgba(245, 192, 74, 0.1);
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     background: rgba(11, 26, 43, 0.8);

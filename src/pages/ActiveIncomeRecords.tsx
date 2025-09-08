@@ -34,6 +34,10 @@ const BackButton = styled.button`
   
   &:hover {
     background: rgba(245, 192, 74, 0.1);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -62,6 +66,11 @@ const RecordsCard = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+    padding: 1rem;
+  }
 `;
 
 const RecordsHeader = styled.div`

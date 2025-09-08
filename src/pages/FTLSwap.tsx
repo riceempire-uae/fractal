@@ -138,10 +138,6 @@ const SwapIcon = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(238, 245, 255, 0.3);
@@ -191,10 +187,6 @@ const ExchangeButton = styled.button`
   padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
   
   &:hover {
     transform: translateY(-2px);
@@ -263,10 +255,6 @@ const RefreshButton = styled.button`
   cursor: pointer;
   transition: all 0.2s ease;
   
-  @media (max-width: 768px) {
-    transition: none;
-  }
-  
   &:hover {
     background: rgba(245, 192, 74, 0.2);
   }
@@ -279,10 +267,6 @@ const RecordItem = styled.div`
   margin-bottom: 1rem;
   border: 1px solid rgba(245, 192, 74, 0.1);
   transition: all 0.2s ease;
-  
-  @media (max-width: 768px) {
-    transition: none;
-  }
 `;
 
 const RecordInfo = styled.div`
