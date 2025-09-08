@@ -49,55 +49,64 @@ const ModalOverlay = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  padding: 2rem;
-  backdrop-filter: blur(10px);
+  z-index: 99999;
+  padding: 1rem;
+  
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
 `;
 
 const ModalContent = styled(motion.div)`
-  background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
-  border-radius: 20px;
-  padding: 2.5rem;
+  background: #1a2a3a;
+  border-radius: 16px;
+  padding: 1.5rem;
   width: 100%;
-  max-width: 600px;
-  min-height: 350px;
-  border: 2px solid rgba(245, 192, 74, 0.3);
+  max-width: 500px;
+  max-height: 90vh;
+  border: 1px solid rgba(245, 192, 74, 0.2);
   position: relative;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(20px);
-  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  
+  @media (max-width: 768px) {
+    border-radius: 16px 16px 0 0;
+    max-height: 85vh;
+    padding: 1.25rem;
+  }
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(245, 192, 74, 0.2);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(245, 192, 74, 0.1);
 `;
 
 const ModalTitle = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: #f5c04a;
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 `;
 
 const CloseButton = styled.button`
   background: rgba(245, 192, 74, 0.1);
-  border: 2px solid rgba(245, 192, 74, 0.3);
+  border: 1px solid rgba(245, 192, 74, 0.2);
   color: #f5c04a;
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   width: 36px;
   height: 36px;
   display: flex;
@@ -106,94 +115,96 @@ const CloseButton = styled.button`
   
   &:hover {
     background: rgba(245, 192, 74, 0.2);
-    border-color: rgba(245, 192, 74, 0.5);
-    transform: scale(1.05);
+    border-color: rgba(245, 192, 74, 0.4);
   }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 `;
 
 const Label = styled.label`
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #eef5ff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 `;
 
 const Input = styled.input`
   width: 100%;
-  background: rgba(11, 26, 43, 0.9);
-  border: 2px solid rgba(245, 192, 74, 0.3);
-  border-radius: 12px;
-  padding: 1rem;
+  background: rgba(11, 26, 43, 0.6);
+  border: 1px solid rgba(245, 192, 74, 0.3);
+  border-radius: 8px;
+  padding: 0.875rem;
   color: #eef5ff;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
   outline: none;
-  transition: all 0.3s ease;
-  min-height: 56px;
+  transition: all 0.2s ease;
+  min-height: 48px;
   
   &::placeholder {
     color: rgba(238, 245, 255, 0.6);
-    font-weight: 500;
   }
   
   &:focus {
     border-color: #f5c04a;
-    box-shadow: 0 0 0 4px rgba(245, 192, 74, 0.2);
-    background: rgba(11, 26, 43, 1);
+    box-shadow: 0 0 0 2px rgba(245, 192, 74, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 1rem;
+    min-height: 52px;
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid rgba(245, 192, 74, 0.2);
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(245, 192, 74, 0.1);
+  
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+  }
 `;
 
 const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
   flex: 1;
-  padding: 1.25rem 1.5rem;
-  border-radius: 16px;
-  font-size: 1rem;
-  font-weight: 800;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   border: none;
-  min-height: 60px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  min-height: 48px;
   
   ${props => props.$variant === 'primary' ? `
     background: linear-gradient(135deg, #f5c04a 0%, #d4a843 100%);
     color: #0b1a2b;
     
     &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(245, 192, 74, 0.5);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(245, 192, 74, 0.3);
     }
   ` : `
     background: transparent;
     color: #f5c04a;
-    border: 2px solid #f5c04a;
+    border: 1px solid #f5c04a;
     
     &:hover {
       background: #f5c04a;
       color: #0b1a2b;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(245, 192, 74, 0.3);
     }
   `}
   
@@ -205,6 +216,12 @@ const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+    font-size: 0.9rem;
+    min-height: 52px;
   }
 `;
 
@@ -296,10 +313,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             onClick={handleCloseModal}
           >
             <ModalContent
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalHeader>
@@ -343,10 +360,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             onClick={() => setIsNewsModalOpen(false)}
           >
             <ModalContent
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalHeader>
@@ -355,30 +372,30 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 </ModalTitle>
               </ModalHeader>
 
-              <div style={{ padding: '1.5rem' }}>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ color: '#eef5ff', marginBottom: '0.5rem', fontSize: '1.2rem' }}>
+              <div style={{ padding: '0' }}>
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <h3 style={{ color: '#eef5ff', marginBottom: '0.75rem', fontSize: '1rem', fontWeight: '600' }}>
                     🎉 {t('news.newAIFundLaunch')}
                   </h3>
-                  <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.6 }}>
+                  <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.5, fontSize: '0.875rem' }}>
                     {t('news.newAIFundDescription')}
                   </p>
                 </div>
 
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ color: '#eef5ff', marginBottom: '0.5rem', fontSize: '1.2rem' }}>
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <h3 style={{ color: '#eef5ff', marginBottom: '0.75rem', fontSize: '1rem', fontWeight: '600' }}>
                     ⚡ {t('news.systemMaintenance')}
                   </h3>
-                  <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.6 }}>
+                  <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.5, fontSize: '0.875rem' }}>
                     {t('news.systemMaintenanceDescription')}
                   </p>
                 </div>
 
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ color: '#eef5ff', marginBottom: '0.5rem', fontSize: '1.2rem' }}>
+                <div style={{ marginBottom: '0' }}>
+                  <h3 style={{ color: '#eef5ff', marginBottom: '0.75rem', fontSize: '1rem', fontWeight: '600' }}>
                     🔒 {t('news.securityUpdate')}
                   </h3>
-                  <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.6 }}>
+                  <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.5, fontSize: '0.875rem' }}>
                     {t('news.securityUpdateDescription')}
                   </p>
                 </div>

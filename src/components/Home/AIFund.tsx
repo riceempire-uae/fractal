@@ -184,45 +184,50 @@ const ModalOverlay = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  padding: 2rem;
+  z-index: 99999;
+  padding: 1rem;
+  
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
 `;
 
 const ModalContent = styled(motion.div)`
-  background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
-  border-radius: 20px;
-  padding: 2.5rem;
-  max-width: 600px;
+  background: #1a2a3a;
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-width: 500px;
   width: 100%;
-  min-height: 500px;
-  border: 2px solid rgba(245, 192, 74, 0.3);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+  max-height: 90vh;
+  border: 1px solid rgba(245, 192, 74, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   position: relative;
-  backdrop-filter: blur(20px);
   overflow-y: auto;
+  
+  @media (max-width: 768px) {
+    border-radius: 16px 16px 0 0;
+    max-height: 85vh;
+    padding: 1.25rem;
+  }
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(245, 192, 74, 0.1);
-  
-  @media (max-width: 767px) {
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-  }
 `;
 
 const ModalTitle = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: #f5c04a;
   margin: 0;
   display: flex;
@@ -230,63 +235,49 @@ const ModalTitle = styled.h2`
   gap: 0.5rem;
   flex: 1;
   min-width: 0;
-  
-  @media (max-width: 767px) {
-    font-size: 1.1rem;
-  }
 `;
 
 const CloseButton = styled.button`
-  background: none;
-  border: none;
-  color: #eef5ff;
+  background: rgba(245, 192, 74, 0.1);
+  border: 1px solid rgba(245, 192, 74, 0.2);
+  color: #f5c04a;
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 50%;
+  border-radius: 8px;
   transition: all 0.2s ease;
-  min-width: 44px;
-  min-height: 44px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   
   &:hover {
-    background: rgba(245, 192, 74, 0.1);
-    color: #f5c04a;
-  }
-  
-  @media (max-width: 767px) {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0.375rem;
+    background: rgba(245, 192, 74, 0.2);
+    border-color: rgba(245, 192, 74, 0.4);
   }
 `;
 
 const ModalBody = styled.div`
-  margin-bottom: 1.5rem;
-  
-  @media (max-width: 767px) {
-    margin-bottom: 1rem;
-  }
+  margin-bottom: 1rem;
 `;
 
 const InputGroup = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 `;
 
 const Label = styled.label`
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #eef5ff;
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.75rem;
-  background: rgba(11, 26, 43, 0.8);
-  border: 2px solid rgba(245, 192, 74, 0.2);
+  padding: 0.875rem;
+  background: rgba(11, 26, 43, 0.6);
+  border: 1px solid rgba(245, 192, 74, 0.3);
   border-radius: 8px;
   color: #eef5ff;
   font-size: 1rem;
@@ -296,16 +287,17 @@ const Input = styled.input`
   &:focus {
     outline: none;
     border-color: #f5c04a;
-    box-shadow: 0 0 0 3px rgba(245, 192, 74, 0.1);
+    box-shadow: 0 0 0 2px rgba(245, 192, 74, 0.1);
   }
   
   &::placeholder {
-    color: rgba(238, 245, 255, 0.5);
+    color: rgba(238, 245, 255, 0.6);
   }
   
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     font-size: 16px; /* Prevents zoom on iOS */
-    padding: 0.875rem;
+    padding: 1rem;
+    min-height: 52px;
   }
 `;
 
@@ -327,26 +319,26 @@ const BalanceText = styled.div`
 `;
 
 const BalanceContainer = styled.div`
-  margin-top: 0.375rem;
+  margin-top: 0.75rem;
   display: flex;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
 
 const BalanceItem = styled.div`
   flex: 1;
   text-align: center;
-  padding: 0.375rem;
-  background: rgba(11, 26, 43, 0.3);
-  border-radius: 6px;
-  border: 1px solid rgba(245, 192, 74, 0.1);
+  padding: 0.75rem 0.5rem;
+  background: rgba(11, 26, 43, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(245, 192, 74, 0.2);
 `;
 
 const BalanceLabel = styled.div`
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   color: #eef5ff;
-  opacity: 0.7;
-  margin-bottom: 0.125rem;
+  opacity: 0.8;
+  margin-bottom: 0.25rem;
 `;
 
 const BalanceValue = styled.div`
@@ -395,12 +387,12 @@ const CalculationAmount = styled.span`
 `;
 
 const PaymentMethodGroup = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 `;
 
 const PaymentMethodLabel = styled.label`
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #eef5ff;
   margin-bottom: 0.75rem;
@@ -409,68 +401,50 @@ const PaymentMethodLabel = styled.label`
 const RadioGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  
-  @media (min-width: 480px) {
-    flex-direction: row;
-  }
+  gap: 0.5rem;
 `;
 
 const RadioOption = styled.label<{ $disabled?: boolean }>`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: ${props => props.$disabled ? 'rgba(11, 26, 43, 0.3)' : 'rgba(11, 26, 43, 0.5)'};
-  border: 2px solid ${props => props.$disabled ? 'rgba(128, 128, 128, 0.3)' : 'rgba(245, 192, 74, 0.2)'};
-  border-radius: 10px;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  background: ${props => props.$disabled ? 'rgba(11, 26, 43, 0.3)' : 'rgba(11, 26, 43, 0.4)'};
+  border: 1px solid ${props => props.$disabled ? 'rgba(128, 128, 128, 0.3)' : 'rgba(245, 192, 74, 0.2)'};
+  border-radius: 8px;
   cursor: ${props => props.$disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.2s ease;
   opacity: ${props => props.$disabled ? 0.5 : 1};
-  min-height: 48px;
+  min-height: 52px;
   
   &:hover {
-    background: ${props => props.$disabled ? 'rgba(11, 26, 43, 0.3)' : 'rgba(11, 26, 43, 0.7)'};
+    background: ${props => props.$disabled ? 'rgba(11, 26, 43, 0.3)' : 'rgba(11, 26, 43, 0.6)'};
     border-color: ${props => props.$disabled ? 'rgba(128, 128, 128, 0.3)' : 'rgba(245, 192, 74, 0.4)'};
-  }
-  
-  @media (max-width: 767px) {
-    padding: 0.875rem;
-    min-height: 52px;
   }
 `;
 
 const RadioInput = styled.input`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   accent-color: #f5c04a;
   cursor: pointer;
-  
-  @media (max-width: 767px) {
-    width: 22px;
-    height: 22px;
-  }
 `;
 
 const RadioText = styled.span<{ $disabled?: boolean }>`
   font-size: 0.875rem;
   color: ${props => props.$disabled ? 'rgba(238, 245, 255, 0.4)' : '#eef5ff'};
   font-weight: 500;
-  
-  @media (max-width: 767px) {
-    font-size: 0.9rem;
-  }
 `;
 
 const ModalActions = styled.div`
   display: flex;
   gap: 0.75rem;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   border-top: 1px solid rgba(245, 192, 74, 0.1);
   
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     gap: 0.5rem;
-    padding-top: 0.75rem;
+    padding-top: 0.5rem;
   }
 `;
 
@@ -479,17 +453,17 @@ const ConfirmButton = styled.button`
   padding: 0.875rem 1rem;
   background: linear-gradient(135deg, #f5c04a 0%, #d4a843 100%);
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   color: #0b1a2b;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   min-height: 48px;
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 192, 74, 0.3);
   }
   
   &:disabled {
@@ -498,7 +472,7 @@ const ConfirmButton = styled.button`
     transform: none;
   }
   
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     padding: 1rem;
     font-size: 0.9rem;
     min-height: 52px;
@@ -509,13 +483,13 @@ const CancelButton = styled.button`
   flex: 1;
   padding: 0.875rem 1rem;
   background: transparent;
-  border: 2px solid #f5c04a;
-  border-radius: 10px;
+  border: 1px solid #f5c04a;
+  border-radius: 8px;
   color: #f5c04a;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   min-height: 48px;
   
   &:hover {
@@ -523,7 +497,7 @@ const CancelButton = styled.button`
     color: #0b1a2b;
   }
   
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     padding: 1rem;
     font-size: 0.9rem;
     min-height: 52px;
@@ -612,34 +586,21 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
         
         <AIFundStats>
           {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <StatCard>
-                <StatValue>{stat.value}</StatValue>
-                <StatLabel>{stat.label}</StatLabel>
-              </StatCard>
-            </motion.div>
+            <StatCard key={index}>
+              <StatValue>{stat.value}</StatValue>
+              <StatLabel>{stat.label}</StatLabel>
+            </StatCard>
           ))}
         </AIFundStats>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
-          <AIFundActions>
+        <AIFundActions>
           <PrimaryButton onClick={handleStakeClick}>
             {t('button.stake')}
           </PrimaryButton>
           <SecondaryButton onClick={() => onNavigate?.('investment-records')}>
             {t('button.records')}
           </SecondaryButton>
-          </AIFundActions>
-        </motion.div>
+        </AIFundActions>
       </AIFundContainer>
       
       {/* Stake Modal - Outside the card container */}
@@ -652,10 +613,10 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
             onClick={handleCloseModal}
           >
             <ModalContent
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalHeader>
