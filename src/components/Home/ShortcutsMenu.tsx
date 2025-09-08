@@ -86,10 +86,18 @@ const ShortcutItem = styled.button`
     border-color: ${({ theme }) => theme.colors.accent};
     transform: translateY(-2px);
     box-shadow: ${({ theme }) => theme.shadows.md};
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 
   &:active {
     transform: translateY(0);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

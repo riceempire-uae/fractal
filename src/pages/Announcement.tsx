@@ -62,6 +62,10 @@ const AnnouncementCard = styled.div`
     border-color: rgba(245, 192, 74, 0.4);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -149,6 +153,10 @@ const ReadMoreButton = styled.button`
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

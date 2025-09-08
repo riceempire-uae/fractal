@@ -25,6 +25,10 @@ const SubBannerCard = styled.div`
     transform: translateY(-4px);
     box-shadow: ${({ theme }) => theme.shadows.lg};
     border-color: ${({ theme }) => theme.colors.accent};
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

@@ -73,6 +73,10 @@ const AssetCard = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     border-color: rgba(245, 192, 74, 0.3);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -298,6 +302,10 @@ const ApproveButton = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

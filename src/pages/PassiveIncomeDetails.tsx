@@ -101,6 +101,10 @@ const BalanceItem = styled.div`
     background: rgba(11, 26, 43, 0.8);
     border-color: rgba(245, 192, 74, 0.2);
     transform: translateY(-2px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -169,6 +173,10 @@ const BalanceExtractButton = styled.button`
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -189,6 +197,10 @@ const BalanceMineButton = styled.button`
   &:hover {
     background: rgba(59, 130, 246, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -209,6 +221,10 @@ const BalanceTransferButton = styled.button`
   &:hover {
     background: rgba(34, 197, 94, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -229,6 +245,10 @@ const BalanceHistoryButton = styled.button`
   &:hover {
     background: rgba(168, 85, 247, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -345,6 +365,10 @@ const Ftl2TerminateButton = styled.button`
   &:hover {
     background: rgba(239, 68, 68, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -392,6 +416,10 @@ const MiningButton = styled.button`
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -459,6 +487,10 @@ const TerminateButton = styled.button`
   &:hover {
     background: rgba(239, 68, 68, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -478,6 +510,10 @@ const MineGasButton = styled.button`
   &:hover {
     background: rgba(59, 130, 246, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -563,6 +599,10 @@ const RecordRow = styled.div`
     background: rgba(11, 26, 43, 0.8);
     border-color: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   @media (max-width: 768px) {
@@ -612,6 +652,10 @@ const ExtractButton = styled.button`
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -804,6 +848,10 @@ const ConfirmButton = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

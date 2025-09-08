@@ -183,10 +183,18 @@ const ExchangeButton = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   &:active {
     transform: translateY(0);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   &:disabled {

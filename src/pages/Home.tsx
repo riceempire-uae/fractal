@@ -196,6 +196,10 @@ const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
     &:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(245, 192, 74, 0.3);
+      
+      @media (max-width: 768px) {
+        transform: none;
+      }
     }
   ` : `
     background: transparent;
@@ -210,6 +214,10 @@ const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
   
   &:active {
     transform: translateY(0);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   &:disabled {
@@ -241,10 +249,18 @@ const TriggerButton = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   &:active {
     transform: translateY(0);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

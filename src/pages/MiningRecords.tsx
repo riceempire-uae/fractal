@@ -137,6 +137,10 @@ const RecordRow = styled.div`
     background: rgba(11, 26, 43, 0.8);
     border-color: rgba(245, 192, 74, 0.2);
     transform: translateY(-1px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   @media (max-width: 768px) {

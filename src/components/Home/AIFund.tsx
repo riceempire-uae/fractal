@@ -81,6 +81,10 @@ const StatCard = styled.div`
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(245, 192, 74, 0.2);
     background: rgba(245, 192, 74, 0.15);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 
   &::before {
@@ -133,10 +137,18 @@ const PrimaryButton = styled.button`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 
   &:active {
     transform: translateY(0);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -159,10 +171,18 @@ const SecondaryButton = styled.button`
     color: #0b1a2b;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.3);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 
   &:active {
     transform: translateY(0);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -464,6 +484,10 @@ const ConfirmButton = styled.button`
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(245, 192, 74, 0.3);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
   
   &:disabled {
