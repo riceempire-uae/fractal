@@ -11,6 +11,7 @@ import {
   X,
   DollarSign
 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AIFundContainer = styled.div`
   background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
@@ -19,7 +20,6 @@ const AIFundContainer = styled.div`
   margin-bottom: 2rem;
   border: 1px solid rgba(245, 192, 74, 0.2);
   position: relative;
-  overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 400px;
@@ -184,24 +184,26 @@ const ModalOverlay = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  padding: 1rem;
+  z-index: 9999;
+  padding: 2rem;
 `;
 
 const ModalContent = styled(motion.div)`
   background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
-  border-radius: 16px;
-  padding: 1.5rem;
-  max-width: 400px;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 600px;
   width: 100%;
-  border: 1px solid rgba(245, 192, 74, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  min-height: 500px;
+  border: 2px solid rgba(245, 192, 74, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
   position: relative;
   backdrop-filter: blur(20px);
+  overflow-y: auto;
 `;
 
 const ModalHeader = styled.div`
@@ -209,6 +211,13 @@ const ModalHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(245, 192, 74, 0.1);
+  
+  @media (max-width: 767px) {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+  }
 `;
 
 const ModalTitle = styled.h2`
@@ -219,6 +228,12 @@ const ModalTitle = styled.h2`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  
+  @media (max-width: 767px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -229,15 +244,30 @@ const CloseButton = styled.button`
   padding: 0.5rem;
   border-radius: 50%;
   transition: all 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:hover {
     background: rgba(245, 192, 74, 0.1);
     color: #f5c04a;
   }
+  
+  @media (max-width: 767px) {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.375rem;
+  }
 `;
 
 const ModalBody = styled.div`
   margin-bottom: 1.5rem;
+  
+  @media (max-width: 767px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const InputGroup = styled.div`
@@ -254,13 +284,14 @@ const Label = styled.label`
 
 const Input = styled.input`
   width: 100%;
-  padding: 0.625rem;
+  padding: 0.75rem;
   background: rgba(11, 26, 43, 0.8);
   border: 2px solid rgba(245, 192, 74, 0.2);
   border-radius: 8px;
   color: #eef5ff;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   transition: all 0.2s ease;
+  min-height: 48px;
   
   &:focus {
     outline: none;
@@ -270,6 +301,11 @@ const Input = styled.input`
   
   &::placeholder {
     color: rgba(238, 245, 255, 0.5);
+  }
+  
+  @media (max-width: 767px) {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.875rem;
   }
 `;
 
@@ -314,9 +350,9 @@ const BalanceLabel = styled.div`
 `;
 
 const BalanceValue = styled.div`
-  font-size: 0.625rem;
+  font-size: 0.875rem;
   color: #f5c04a;
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 const PaymentCalculation = styled.div`
@@ -372,49 +408,75 @@ const PaymentMethodLabel = styled.label`
 
 const RadioGroup = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 0.75rem;
+  
+  @media (min-width: 480px) {
+    flex-direction: row;
+  }
 `;
 
 const RadioOption = styled.label<{ $disabled?: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.75rem;
   background: ${props => props.$disabled ? 'rgba(11, 26, 43, 0.3)' : 'rgba(11, 26, 43, 0.5)'};
   border: 2px solid ${props => props.$disabled ? 'rgba(128, 128, 128, 0.3)' : 'rgba(245, 192, 74, 0.2)'};
   border-radius: 10px;
   cursor: ${props => props.$disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.2s ease;
   opacity: ${props => props.$disabled ? 0.5 : 1};
+  min-height: 48px;
   
   &:hover {
     background: ${props => props.$disabled ? 'rgba(11, 26, 43, 0.3)' : 'rgba(11, 26, 43, 0.7)'};
     border-color: ${props => props.$disabled ? 'rgba(128, 128, 128, 0.3)' : 'rgba(245, 192, 74, 0.4)'};
   }
+  
+  @media (max-width: 767px) {
+    padding: 0.875rem;
+    min-height: 52px;
+  }
 `;
 
 const RadioInput = styled.input`
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   accent-color: #f5c04a;
   cursor: pointer;
+  
+  @media (max-width: 767px) {
+    width: 22px;
+    height: 22px;
+  }
 `;
 
 const RadioText = styled.span<{ $disabled?: boolean }>`
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: ${props => props.$disabled ? 'rgba(238, 245, 255, 0.4)' : '#eef5ff'};
   font-weight: 500;
+  
+  @media (max-width: 767px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const ModalActions = styled.div`
   display: flex;
   gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 192, 74, 0.1);
+  
+  @media (max-width: 767px) {
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+  }
 `;
 
 const ConfirmButton = styled.button`
   flex: 1;
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1rem;
   background: linear-gradient(135deg, #f5c04a 0%, #d4a843 100%);
   border: none;
   border-radius: 10px;
@@ -423,16 +485,29 @@ const ConfirmButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 48px;
   
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
   }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  @media (max-width: 767px) {
+    padding: 1rem;
+    font-size: 0.9rem;
+    min-height: 52px;
+  }
 `;
 
 const CancelButton = styled.button`
   flex: 1;
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1rem;
   background: transparent;
   border: 2px solid #f5c04a;
   border-radius: 10px;
@@ -441,10 +516,17 @@ const CancelButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 48px;
   
   &:hover {
     background: #f5c04a;
     color: #0b1a2b;
+  }
+  
+  @media (max-width: 767px) {
+    padding: 1rem;
+    font-size: 0.9rem;
+    min-height: 52px;
   }
 `;
 
@@ -453,6 +535,7 @@ interface AIFundProps {
 }
 
 const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [stakeAmount, setStakeAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('50% USDT + 50% FTL');
@@ -517,47 +600,49 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
   };
 
   return (
-    <AIFundContainer>
-      <BackgroundPattern />
-      <AIFundHeader>
-        <AIFundIcon>
-          <Brain size={24} />
-        </AIFundIcon>
-        <AIFundTitle>360 Ai Fund</AIFundTitle>
-      </AIFundHeader>
-      
-      <AIFundStats>
-        {stats.map((stat, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-          >
-            <StatCard>
-              <StatValue>{stat.value}</StatValue>
-              <StatLabel>{stat.label}</StatLabel>
-            </StatCard>
-          </motion.div>
-        ))}
-      </AIFundStats>
+    <>
+      <AIFundContainer>
+        <BackgroundPattern />
+        <AIFundHeader>
+          <AIFundIcon>
+            <Brain size={24} />
+          </AIFundIcon>
+          <AIFundTitle>360 Ai Fund</AIFundTitle>
+        </AIFundHeader>
+        
+        <AIFundStats>
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              <StatCard>
+                <StatValue>{stat.value}</StatValue>
+                <StatLabel>{stat.label}</StatLabel>
+              </StatCard>
+            </motion.div>
+          ))}
+        </AIFundStats>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.3 }}
-      >
-        <AIFundActions>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
+          <AIFundActions>
           <PrimaryButton onClick={handleStakeClick}>
-            Stake
+            {t('button.stake')}
           </PrimaryButton>
           <SecondaryButton onClick={() => onNavigate?.('investment-records')}>
-            Records
+            {t('button.records')}
           </SecondaryButton>
-        </AIFundActions>
-      </motion.div>
+          </AIFundActions>
+        </motion.div>
+      </AIFundContainer>
       
-      {/* Stake Modal */}
+      {/* Stake Modal - Outside the card container */}
       <AnimatePresence>
         {isModalOpen && (
           <ModalOverlay
@@ -570,12 +655,13 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalHeader>
                 <ModalTitle>
-                  <DollarSign size={24} />
-                  Stake AI Fund
+                  <DollarSign size={20} />
+                  {t('modal.stakeAIFund')}
                 </ModalTitle>
                 <CloseButton onClick={handleCloseModal}>
                   <X size={20} />
@@ -584,10 +670,10 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
               
               <ModalBody>
                 <InputGroup>
-                  <Label>Amount to Stake (USDT)</Label>
+                  <Label>{t('form.amountToStake')}</Label>
                   <Input
                     type="number"
-                    placeholder="Minimum Stake $100"
+                    placeholder={t('form.minimumStake')}
                     value={stakeAmount}
                     onChange={(e) => setStakeAmount(e.target.value)}
                     min="100"
@@ -596,17 +682,17 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
                   
                   <BalanceContainer>
                     <BalanceItem>
-                      <BalanceLabel>USDT Balance</BalanceLabel>
+                      <BalanceLabel>{t('form.usdtBalance')}</BalanceLabel>
                       <BalanceValue>{usdtBalance}</BalanceValue>
                     </BalanceItem>
                     <BalanceItem>
-                      <BalanceLabel>FTL Balance</BalanceLabel>
+                      <BalanceLabel>{t('form.ftlBalance')}</BalanceLabel>
                       <BalanceValue>{ftlBalance}</BalanceValue>
                     </BalanceItem>
                   </BalanceContainer>
                   
                   <PaymentMethodGroup>
-                    <PaymentMethodLabel>Payment Method</PaymentMethodLabel>
+                    <PaymentMethodLabel>{t('form.paymentMethod')}</PaymentMethodLabel>
                     <RadioGroup>
                       <RadioOption>
                         <RadioInput
@@ -616,7 +702,7 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
                           checked={paymentMethod === '100% USDT'}
                           onChange={(e) => setPaymentMethod(e.target.value)}
                         />
-                        <RadioText>100% USDT</RadioText>
+                        <RadioText>{t('form.100USDT')}</RadioText>
                       </RadioOption>
                       <RadioOption $disabled={true}>
                         <RadioInput
@@ -627,27 +713,27 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
                           onChange={(e) => setPaymentMethod(e.target.value)}
                           disabled
                         />
-                        <RadioText $disabled={true}>50% USDT + 50% FTL</RadioText>
+                        <RadioText $disabled={true}>{t('form.50USDT50FTL')}</RadioText>
                       </RadioOption>
                     </RadioGroup>
                     
                     {stakeAmount && parseFloat(stakeAmount) > 0 && (
                       <PaymentCalculation>
-                        <CalculationTitle>Payment Breakdown</CalculationTitle>
+                        <CalculationTitle>{t('form.paymentBreakdown')}</CalculationTitle>
                         {paymentMethod === '100% USDT' && (
                           <CalculationRow>
-                            <CalculationLabel>USDT Amount:</CalculationLabel>
+                            <CalculationLabel>{t('form.usdtAmount')}:</CalculationLabel>
                             <CalculationAmount>{usdtAmount} USDT = ${usdtAmount}</CalculationAmount>
                           </CalculationRow>
                         )}
                         {paymentMethod === '50% USDT + 50% FTL' && (
                           <>
                             <CalculationRow>
-                              <CalculationLabel>USDT Amount:</CalculationLabel>
+                              <CalculationLabel>{t('form.usdtAmount')}:</CalculationLabel>
                               <CalculationAmount>{usdtAmount} USDT = ${usdtAmount}</CalculationAmount>
                             </CalculationRow>
                             <CalculationRow>
-                              <CalculationLabel>FTL Amount:</CalculationLabel>
+                              <CalculationLabel>{t('form.ftlAmount')}:</CalculationLabel>
                               <CalculationAmount>{ftlAmount} FTL = ${ftlDollarValue}</CalculationAmount>
                             </CalculationRow>
                           </>
@@ -660,20 +746,20 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
               
               <ModalActions>
                 <CancelButton onClick={handleCloseModal}>
-                  Cancel
+                  {t('button.cancel')}
                 </CancelButton>
                 <ConfirmButton 
                   onClick={handleConfirmStake}
                   disabled={!stakeAmount || parseFloat(stakeAmount) < 100}
                 >
-               Stake Now
+                  {t('button.stakeNow')}
                 </ConfirmButton>
               </ModalActions>
             </ModalContent>
           </ModalOverlay>
         )}
       </AnimatePresence>
-    </AIFundContainer>
+    </>
   );
 };
 

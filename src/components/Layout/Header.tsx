@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Wallet, Globe, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -12,7 +13,7 @@ const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.gradient.glass};
   backdrop-filter: blur(20px);
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1rem;
 `;
 
 const HeaderContent = styled.div`
@@ -26,15 +27,15 @@ const HeaderContent = styled.div`
 const Logo = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: ${({ theme }) => theme.fontSizes['2xl']};
+  gap: 0.5rem;
+  font-size: ${({ theme }) => theme.fontSizes.xl};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.primaryText};
 `;
 
 const LogoIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,19 +44,19 @@ const LogoIcon = styled.div`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 `;
 
 const AddressHolder = styled.button`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
   background: ${({ theme }) => theme.colors.card};
   border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.primaryText};
-  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-size: 0.8rem;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
   transition: all 0.2s ease;
@@ -73,13 +74,13 @@ const LanguageSelector = styled.div`
 const LanguageButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
   background: ${({ theme }) => theme.colors.card};
   border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.primaryText};
-  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-size: 0.8rem;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
   transition: all 0.2s ease;
@@ -129,12 +130,13 @@ const LanguageOption = styled.button`
 
 const Header: React.FC = () => {
   const [isLanguageOpen, setIsLanguageOpen] = React.useState(false);
-  const [selectedLanguage, setSelectedLanguage] = React.useState('EN');
+  const { language, setLanguage, t } = useLanguage();
 
   const languages = [
-    { code: 'EN', name: 'English' },
-    { code: 'ZH', name: '中文' },
-    { code: 'JA', name: '日本語' },
+    { code: 'EN' as const, name: 'English' },
+    { code: 'ZH-TW' as const, name: '繁體中文' },
+    { code: 'JA' as const, name: '日本語' },
+    { code: 'KO' as const, name: '한국어' },
   ];
 
   return (
@@ -145,8 +147,8 @@ const Header: React.FC = () => {
             <Image 
               src="/logo.svg" 
               alt="Fractal Logo" 
-              width={40} 
-              height={40}
+              width={32} 
+              height={32}
               priority
             />
           </LogoIcon>
@@ -155,15 +157,15 @@ const Header: React.FC = () => {
         
         <RightSection>
           <AddressHolder>
-            <Wallet size={20} />
+            <Wallet size={18} />
             0x1234...5678
           </AddressHolder>
           
           <LanguageSelector>
             <LanguageButton onClick={() => setIsLanguageOpen(!isLanguageOpen)}>
-              <Globe size={20} />
-              {selectedLanguage}
-              <ChevronDown size={16} />
+              <Globe size={18} />
+              {language}
+              <ChevronDown size={14} />
             </LanguageButton>
             
             {isLanguageOpen && (
@@ -172,7 +174,7 @@ const Header: React.FC = () => {
                   <LanguageOption
                     key={lang.code}
                     onClick={() => {
-                      setSelectedLanguage(lang.code);
+                      setLanguage(lang.code);
                       setIsLanguageOpen(false);
                     }}
                   >

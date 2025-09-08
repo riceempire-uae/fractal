@@ -9,6 +9,7 @@ import {
   ChevronRight,
   Megaphone
 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const ShortcutsContainer = styled.div`
   background: ${({ theme }) => theme.colors.gradient.card};
@@ -137,35 +138,37 @@ interface ShortcutsMenuProps {
 }
 
 const ShortcutsMenu: React.FC<ShortcutsMenuProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
+  
   const shortcuts = [
     {
       icon: DollarSign,
-      title: 'My Earnings',
-      description: 'View your total earnings',
+      title: t('shortcuts.myEarnings'),
+      description: t('shortcuts.myEarningsDesc'),
       action: () => onNavigate?.('earnings'),
     },
     {
       icon: Link,
-      title: 'Invitation Link',
-      description: 'Share your referral link',
+      title: t('shortcuts.invitationLink'),
+      description: t('shortcuts.invitationLinkDesc'),
       action: () => onNavigate?.('invitation-link'),
     },
     {
       icon: ArrowLeftRight,
-      title: 'FTL Swap',
-      description: 'Exchange tokens instantly',
+      title: t('shortcuts.ftlSwap'),
+      description: t('shortcuts.ftlSwapDesc'),
       action: () => onNavigate?.('ftl-swap'),
     },
     {
       icon: Shield,
-      title: 'Secure Password',
-      description: 'Manage your security settings',
+      title: t('shortcuts.securePassword'),
+      description: t('shortcuts.securePasswordDesc'),
       action: () => onNavigate?.('security'),
     },
     {
       icon: Megaphone,
-      title: 'Announcement',
-      description: 'View latest announcements',
+      title: t('shortcuts.announcement'),
+      description: t('shortcuts.announcementDesc'),
       action: () => onNavigate?.('announcement'),
     },
   ];
@@ -173,9 +176,9 @@ const ShortcutsMenu: React.FC<ShortcutsMenuProps> = ({ onNavigate }) => {
   return (
     <ShortcutsContainer>
       <ShortcutsHeader>
-        <ShortcutsTitle>Quick Actions</ShortcutsTitle>
+        <ShortcutsTitle>{t('shortcuts.quickActions')}</ShortcutsTitle>
         <ViewAllButton>
-          View All
+          {t('shortcuts.viewAll')}
           <ChevronRight size={16} />
         </ViewAllButton>
       </ShortcutsHeader>

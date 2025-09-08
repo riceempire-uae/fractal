@@ -23,6 +23,7 @@ import Loading from './Loading';
 import ExportButtonComponent from '../components/ExportButton';
 import { Toaster } from 'react-hot-toast';
 import StyledComponentsRegistry from '../lib/registry';
+import { LanguageProvider } from '../contexts/LanguageContext';
 import '../styles/globals.css';
 import '../styles/loading.css';
 
@@ -79,7 +80,9 @@ const App: React.FC = () => {
     return (
       <StyledComponentsRegistry>
         <ThemeProvider theme={theme}>
-          <Loading onComplete={handleLoadingComplete} />
+          <LanguageProvider>
+            <Loading onComplete={handleLoadingComplete} />
+          </LanguageProvider>
         </ThemeProvider>
       </StyledComponentsRegistry>
     );
@@ -88,21 +91,23 @@ const App: React.FC = () => {
   return (
     <StyledComponentsRegistry>
       <ThemeProvider theme={theme}>
-        <Layout activeTab={activeTab} onTabChange={setActiveTab}>
-          {renderPage()}
-        </Layout>
-        <ExportButtonComponent />
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#1a2a3a',
-              color: '#eef5ff',
-              border: '1px solid #3a4a5a',
-            },
-          }}
-        />
+        <LanguageProvider>
+          <Layout activeTab={activeTab} onTabChange={setActiveTab}>
+            {renderPage()}
+          </Layout>
+          <ExportButtonComponent />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#1a2a3a',
+                color: '#eef5ff',
+                border: '1px solid #3a4a5a',
+              },
+            }}
+          />
+        </LanguageProvider>
       </ThemeProvider>
     </StyledComponentsRegistry>
   );

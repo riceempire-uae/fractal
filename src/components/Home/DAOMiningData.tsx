@@ -10,6 +10,7 @@ import {
   Shield,
   BarChart3
 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const DAOMiningContainer = styled.div`
   background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
@@ -131,19 +132,21 @@ const BackgroundPattern = styled.div`
 `;
 
 const DAOMiningData: React.FC = () => {
+  const { t } = useLanguage();
+  
   const miningPoolData = [
-    { label: 'Total Mining Pool', value: '40,000,000 FTL' },
-    { label: 'Pool Remaining', value: '39,250,000 FTL' },
-    { label: 'Total Mined', value: '1,250,000 FTL' },
-    { label: 'Total Destroyed', value: '250,000 FTL' },
-    { label: 'Circulating Supply', value: '1,000,000 FTL' },
+    { label: t('dao.totalMiningPool'), value: '40,000,000 FTL' },
+    { label: t('dao.poolRemaining'), value: '39,250,000 FTL' },
+    { label: t('dao.totalMined'), value: '1,250,000 FTL' },
+    { label: t('dao.totalDestroyed'), value: '250,000 FTL' },
+    { label: t('dao.circulatingSupply'), value: '1,000,000 FTL' },
   ];
 
   const todayData = [
-    { label: "Today's Hash Power", value: '5,250 H/day' },
-    { label: "Today's Emission", value: '10,000 FTL' },
-    { label: "Today's Distribution", value: '6,000 FTL' },
-    { label: "Today's Destroy", value: '4,000 FTL' },
+    { label: t('dao.todaysHashPower'), value: '5,250 H/day' },
+    { label: t('dao.todaysEmission'), value: '10,000 FTL' },
+    { label: t('dao.todaysDistribution'), value: '6,000 FTL' },
+    { label: t('dao.todaysDestroy'), value: '4,000 FTL' },
   ];
 
   return (
@@ -153,7 +156,7 @@ const DAOMiningData: React.FC = () => {
         <DAOMiningIcon>
           <Database size={24} />
         </DAOMiningIcon>
-        <DAOMiningTitle>DAO Mining Data</DAOMiningTitle>
+        <DAOMiningTitle>{t('dao.title')}</DAOMiningTitle>
       </DAOMiningHeader>
       
       <DAOMiningGrid>
@@ -165,7 +168,7 @@ const DAOMiningData: React.FC = () => {
           <DataSection>
             <SectionTitle>
               <Coins size={20} />
-              Mining Pool Stats
+              {t('dao.miningPoolStats')}
             </SectionTitle>
             {miningPoolData.map((item, index) => (
               <motion.div
@@ -191,7 +194,7 @@ const DAOMiningData: React.FC = () => {
           <DataSection>
             <SectionTitle>
               <Activity size={20} />
-              Today's Activity
+              {t('dao.todaysActivity')}
             </SectionTitle>
             {todayData.map((item, index) => (
               <motion.div

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Home, Users, Wallet } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const NavigatorContainer = styled.nav`
   position: fixed;
@@ -11,7 +12,7 @@ const NavigatorContainer = styled.nav`
   background: ${({ theme }) => theme.colors.gradient.glass};
   backdrop-filter: blur(20px);
   border-top: 1px solid ${({ theme }) => theme.colors.border};
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
 `;
 
 const NavigatorContent = styled.div`
@@ -20,26 +21,26 @@ const NavigatorContent = styled.div`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
 `;
 
 const NavItem = styled.button<{ $active?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 1rem;
+  gap: 0.2rem;
+  padding: 0.4rem 0.75rem;
   background: none;
   border: none;
   color: ${({ theme, $active }) => 
     $active ? theme.colors.accent : theme.colors.primaryText};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-size: 0.7rem;
   font-weight: ${({ theme, $active }) => 
     $active ? theme.fontWeights.semibold : theme.fontWeights.medium};
   cursor: pointer;
   transition: all 0.2s ease;
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  min-width: 80px;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  min-width: 65px;
 
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
@@ -47,8 +48,8 @@ const NavItem = styled.button<{ $active?: boolean }>`
   }
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     transition: all 0.2s ease;
   }
 
@@ -59,7 +60,7 @@ const NavItem = styled.button<{ $active?: boolean }>`
 `;
 
 const NavLabel = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-size: 0.7rem;
   font-weight: inherit;
 `;
 
@@ -69,10 +70,12 @@ interface BottomNavigatorProps {
 }
 
 const BottomNavigator: React.FC<BottomNavigatorProps> = ({ activeTab, onTabChange }) => {
+  const { t } = useLanguage();
+  
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'team', label: 'Team', icon: Users },
-    { id: 'assets', label: 'Assets', icon: Wallet },
+    { id: 'home', label: t('nav.home'), icon: Home },
+    { id: 'team', label: t('nav.team'), icon: Users },
+    { id: 'assets', label: t('nav.assets'), icon: Wallet },
   ];
 
   return (

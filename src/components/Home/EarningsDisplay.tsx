@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { 
   TrendingUp, 
   Activity, 
-  Eye, 
+  FileText, 
   ArrowUpRight,
   DollarSign,
   Clock
@@ -60,20 +60,20 @@ const EarningsIcon = styled.div<{ $type: 'passive' | 'active' }>`
 const ViewDetailsButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
   background: ${({ theme }) => theme.colors.gradient.glass};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   color: ${({ theme }) => theme.colors.secondaryText};
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
     border-color: ${({ theme }) => theme.colors.accent};
+    background: ${({ theme }) => theme.colors.card};
   }
 `;
 
@@ -189,8 +189,7 @@ const EarningsDisplay: React.FC<EarningsDisplayProps> = ({ onNavigate }) => {
                 {earning.title}
               </EarningsTitle>
               <ViewDetailsButton onClick={() => onNavigate?.('passive-income-details')}>
-                <Eye size={16} />
-                View Details
+                <FileText size={20} />
               </ViewDetailsButton>
             </EarningsHeader>
 

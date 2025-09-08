@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { User, Award, Wallet } from 'lucide-react';
 import { mobile, tablet } from '../../styles/responsive';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const BannerContainer = styled.div`
   position: relative;
@@ -20,7 +21,7 @@ const BannerContent = styled.div`
 `;
 
 const BannerTitle = styled.h1`
-  font-size: ${({ theme }) => theme.fontSizes['4xl']};
+  font-size: ${({ theme }) => theme.fontSizes['3xl']};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.primaryText};
   margin-bottom: 1rem;
@@ -107,21 +108,23 @@ const BackgroundPattern = styled.div`
 `;
 
 const MainBanner: React.FC = () => {
+  const { t } = useLanguage();
+  
   const stats = [
     {
       icon: User,
       value: 'UID: 12345',
-      label: 'User ID',
+      label: t('banner.userId'),
     },
     {
       icon: Award,
       value: 'Ranking: T9',
-      label: 'Current Rank',
+      label: t('banner.currentRank'),
     },
     {
       icon: Wallet,
       value: '0x1234...5678',
-      label: 'Wallet Address',
+      label: t('banner.walletAddress'),
     },
   ];
 
@@ -135,9 +138,9 @@ const MainBanner: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <BannerTitle>
-            Welcome to Fractal
+            {t('banner.welcomeToFractal')}
             <br />
-            <span style={{ color: '#f5c04a' }}>Community Platform</span>
+            <span style={{ color: '#f5c04a' }}>{t('banner.communityPlatform')}</span>
           </BannerTitle>
           
         </motion.div>

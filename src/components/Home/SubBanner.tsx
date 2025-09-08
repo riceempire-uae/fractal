@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, Users } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const SubBannerContainer = styled.div`
   display: grid;
@@ -100,12 +101,14 @@ const StatItem = styled.div`
 `;
 
 const SubBanner: React.FC = () => {
+  const { t } = useLanguage();
+  
   const cards = [
     {
       icon: Clock,
-      title: 'Quick Start',
-      description: 'Get started with staking in just a few clicks. No complex setup required.',
-      action: 'Start Now',
+      title: t('subbanner.quickStart'),
+      description: t('subbanner.quickStartDesc'),
+      action: t('subbanner.startNow'),
       stats: [
         { icon: Clock, value: '2 min' },
         { icon: Users, value: '10K+' },
@@ -113,9 +116,9 @@ const SubBanner: React.FC = () => {
     },
     {
       icon: Users,
-      title: 'Community',
-      description: 'Join our growing community of DeFi enthusiasts and earn together.',
-      action: 'Join Now',
+      title: t('subbanner.community'),
+      description: t('subbanner.communityDesc'),
+      action: t('subbanner.joinNow'),
       stats: [
         { icon: Users, value: '50K+' },
         { icon: Clock, value: '24/7' },

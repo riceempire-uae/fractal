@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Link } from 'lucide-react';
 import MainBanner from '../components/Home/MainBanner';
 import ShortcutsMenu from '../components/Home/ShortcutsMenu';
+import { useLanguage } from '../contexts/LanguageContext';
 import AIFund from '../components/Home/AIFund';
 import DAOMiningData from '../components/Home/DAOMiningData';
 import EarningsDisplay from '../components/Home/EarningsDisplay';
@@ -42,137 +43,157 @@ const RightColumn = styled.div`
   gap: 2rem;
 `;
 
-const ModalOverlay = styled.div`
+const ModalOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 1rem;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
 `;
 
 const ModalContent = styled(motion.div)`
   background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 100%);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 2.5rem;
   width: 100%;
-  max-width: 500px;
-  border: 1px solid rgba(245, 192, 74, 0.2);
+  max-width: 600px;
+  min-height: 350px;
+  border: 2px solid rgba(245, 192, 74, 0.3);
   position: relative;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
+  overflow: hidden;
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(245, 192, 74, 0.2);
 `;
 
 const ModalTitle = styled.h2`
   font-size: 1.5rem;
-  font-weight: 700;
-  color: #eef5ff;
+  font-weight: 800;
+  color: #f5c04a;
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
 
 const CloseButton = styled.button`
-  background: none;
-  border: none;
-  color: #eef5ff;
+  background: rgba(245, 192, 74, 0.1);
+  border: 2px solid rgba(245, 192, 74, 0.3);
+  color: #f5c04a;
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:hover {
-    background: rgba(245, 192, 74, 0.1);
-    color: #f5c04a;
+    background: rgba(245, 192, 74, 0.2);
+    border-color: rgba(245, 192, 74, 0.5);
+    transform: scale(1.05);
   }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 `;
 
 const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
 
 const Label = styled.label`
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 700;
   color: #eef5ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 `;
 
 const Input = styled.input`
   width: 100%;
-  background: rgba(11, 26, 43, 0.8);
-  border: 2px solid rgba(245, 192, 74, 0.2);
+  background: rgba(11, 26, 43, 0.9);
+  border: 2px solid rgba(245, 192, 74, 0.3);
   border-radius: 12px;
   padding: 1rem;
   color: #eef5ff;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
   outline: none;
   transition: all 0.3s ease;
+  min-height: 56px;
   
   &::placeholder {
-    color: #eef5ff;
-    opacity: 0.5;
+    color: rgba(238, 245, 255, 0.6);
+    font-weight: 500;
   }
   
   &:focus {
-    border-color: rgba(245, 192, 74, 0.6);
-    box-shadow: 0 0 0 3px rgba(245, 192, 74, 0.1);
+    border-color: #f5c04a;
+    box-shadow: 0 0 0 4px rgba(245, 192, 74, 0.2);
+    background: rgba(11, 26, 43, 1);
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(245, 192, 74, 0.2);
 `;
 
 const Button = styled.button<{ $variant?: 'primary' | 'secondary' }>`
   flex: 1;
-  padding: 1rem 2rem;
-  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   border: none;
+  min-height: 60px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   
   ${props => props.$variant === 'primary' ? `
     background: linear-gradient(135deg, #f5c04a 0%, #d4a843 100%);
     color: #0b1a2b;
     
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(245, 192, 74, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(245, 192, 74, 0.5);
     }
   ` : `
-    background: rgba(11, 26, 43, 0.8);
-    color: #eef5ff;
-    border: 2px solid rgba(245, 192, 74, 0.2);
+    background: transparent;
+    color: #f5c04a;
+    border: 2px solid #f5c04a;
     
     &:hover {
-      background: rgba(11, 26, 43, 1);
-      border-color: rgba(245, 192, 74, 0.4);
+      background: #f5c04a;
+      color: #0b1a2b;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(245, 192, 74, 0.3);
     }
   `}
   
@@ -217,6 +238,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
+  const { t } = useLanguage();
   const [address, setAddress] = useState('0x5a689f6d108ae6aa585A5fF93873d98703759811');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -258,40 +280,42 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </ContentGrid>
 
       <TriggerButton onClick={() => setIsModalOpen(true)}>
-        Binding Registration
+        {t('button.bindingRegistration')}
       </TriggerButton>
 
       <TriggerButton onClick={() => setIsNewsModalOpen(true)}>
-        News Popup
+        {t('button.newsPopup')}
       </TriggerButton>
 
       <AnimatePresence>
         {isModalOpen && (
-          <ModalOverlay onClick={handleCloseModal}>
+          <ModalOverlay 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseModal}
+          >
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalHeader>
                 <ModalTitle>
                   <Link size={24} />
-                  Binding Registration
+                  {t('modal.bindingRegistration')}
                 </ModalTitle>
-                <CloseButton onClick={handleCloseModal}>
-                  <X size={24} />
-                </CloseButton>
               </ModalHeader>
 
               <Form onSubmit={handleSubmit}>
                 <InputGroup>
-                  <Label htmlFor="address">Referral Address</Label>
+                  <Label htmlFor="address">{t('form.referralAddress')}</Label>
                   <Input
                     id="address"
                     type="text"
-                    placeholder="Enter your referral address"
+                    placeholder={t('form.enterReferralAddress')}
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     required
@@ -300,10 +324,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
                 <ButtonGroup>
                   <Button type="button" $variant="secondary" onClick={handleCloseModal}>
-                    Cancel
+                    {t('button.cancel')}
                   </Button>
                   <Button type="submit" $variant="primary" disabled={isLoading || !address.trim()}>
-                    {isLoading ? 'Registering...' : 'Register'}
+                    {isLoading ? t('form.registering') : t('form.register')}
                   </Button>
                 </ButtonGroup>
               </Form>
@@ -312,58 +336,57 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         )}
 
         {isNewsModalOpen && (
-          <ModalOverlay onClick={() => setIsNewsModalOpen(false)}>
+          <ModalOverlay 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsNewsModalOpen(false)}
+          >
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalHeader>
                 <ModalTitle>
-                  📰 Latest News
+                  📰 {t('modal.latestNews')}
                 </ModalTitle>
-                <CloseButton onClick={() => setIsNewsModalOpen(false)}>
-                  <X size={24} />
-                </CloseButton>
               </ModalHeader>
 
               <div style={{ padding: '1.5rem' }}>
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h3 style={{ color: '#eef5ff', marginBottom: '0.5rem', fontSize: '1.2rem' }}>
-                    🎉 New AI Fund Launch
+                    🎉 {t('news.newAIFundLaunch')}
                   </h3>
                   <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.6 }}>
-                    We are excited to announce the launch of our revolutionary 360° AI Fund! 
-                    This new investment opportunity offers enhanced staking rewards with up to 25% APY.
+                    {t('news.newAIFundDescription')}
                   </p>
                 </div>
 
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h3 style={{ color: '#eef5ff', marginBottom: '0.5rem', fontSize: '1.2rem' }}>
-                    ⚡ System Maintenance
+                    ⚡ {t('news.systemMaintenance')}
                   </h3>
                   <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.6 }}>
-                    Scheduled maintenance will be performed on our trading system on January 20th, 2025 
-                    from 02:00 to 04:00 UTC.
+                    {t('news.systemMaintenanceDescription')}
                   </p>
                 </div>
 
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h3 style={{ color: '#eef5ff', marginBottom: '0.5rem', fontSize: '1.2rem' }}>
-                    🔒 Security Update
+                    🔒 {t('news.securityUpdate')}
                   </h3>
                   <p style={{ color: '#eef5ff', opacity: 0.8, lineHeight: 1.6 }}>
-                    We have implemented additional security measures to protect your assets. 
-                    Please ensure your account is secured with two-factor authentication.
+                    {t('news.securityUpdateDescription')}
                   </p>
                 </div>
               </div>
 
               <ButtonGroup>
                 <Button type="button" $variant="primary" onClick={() => setIsNewsModalOpen(false)}>
-                  Close
+                  {t('button.close')}
                 </Button>
               </ButtonGroup>
             </ModalContent>
