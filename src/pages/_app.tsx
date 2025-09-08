@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import Layout from '../components/Layout/Layout';
@@ -30,6 +30,20 @@ import '../styles/loading.css';
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('home');
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Add/remove loading-page class to body for CSS targeting
+    if (isLoading) {
+      document.body.classList.add('loading-page');
+    } else {
+      document.body.classList.remove('loading-page');
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('loading-page');
+    };
+  }, [isLoading]);
 
   const renderPage = () => {
     switch (activeTab) {

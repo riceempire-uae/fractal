@@ -145,6 +145,10 @@ const CopyButton = styled.button`
   padding: 0.75rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -160,8 +164,10 @@ const CopyButton = styled.button`
   
   &:active {
     transform: translateY(0);
-    
-    @media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
+    &:active {
       transform: none;
     }
   }
@@ -213,6 +219,10 @@ const ActionButton = styled.button`
   padding: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -231,8 +241,10 @@ const ActionButton = styled.button`
   
   &:active {
     transform: translateY(0);
-    
-    @media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
+    &:active {
       transform: none;
     }
   }

@@ -161,6 +161,10 @@ const ToggleButton = styled.button`
   border-radius: 4px;
   transition: all 0.2s ease;
   
+  @media (max-width: 768px) {
+    transition: none;
+  }
+  
   &:hover {
     color: #f5c04a;
     background: rgba(245, 192, 74, 0.1);
@@ -229,6 +233,10 @@ const Button = styled.button`
   padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   margin-top: 1rem;
   
   &:hover {
@@ -242,8 +250,10 @@ const Button = styled.button`
   
   &:active {
     transform: translateY(0);
-    
-    @media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
+    &:active {
       transform: none;
     }
   }

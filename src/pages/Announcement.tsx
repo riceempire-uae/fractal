@@ -58,6 +58,10 @@ const AnnouncementCard = styled.div`
   overflow: hidden;
   transition: all 0.2s ease;
   
+  @media (max-width: 768px) {
+    transition: none;
+  }
+  
   &:hover {
     border-color: rgba(245, 192, 74, 0.4);
     transform: translateY(-2px);
@@ -149,6 +153,10 @@ const ReadMoreButton = styled.button`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   
   &:hover {
     background: rgba(245, 192, 74, 0.2);

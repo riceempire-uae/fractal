@@ -149,8 +149,10 @@ const PrimaryButton = styled.button`
 
   &:active {
     transform: translateY(0);
-    
-    @media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
+    &:active {
       transform: none;
     }
   }
@@ -183,8 +185,10 @@ const SecondaryButton = styled.button`
 
   &:active {
     transform: translateY(0);
-    
-    @media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
+    &:active {
       transform: none;
     }
   }
@@ -269,6 +273,10 @@ const CloseButton = styled.button`
   padding: 0.5rem;
   border-radius: 8px;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   width: 36px;
   height: 36px;
   display: flex;
@@ -306,6 +314,10 @@ const Input = styled.input`
   color: #eef5ff;
   font-size: 1rem;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   min-height: 48px;
   
   &:focus {
@@ -438,6 +450,10 @@ const RadioOption = styled.label<{ $disabled?: boolean }>`
   border-radius: 8px;
   cursor: ${props => props.$disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   opacity: ${props => props.$disabled ? 0.5 : 1};
   min-height: 52px;
   
@@ -483,6 +499,10 @@ const ConfirmButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   min-height: 48px;
   
   &:hover {
@@ -518,6 +538,10 @@ const CancelButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   min-height: 48px;
   
   &:hover {

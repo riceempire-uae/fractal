@@ -20,15 +20,27 @@ const ExportButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   cursor: pointer;
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   box-shadow: ${({ theme }) => theme.shadows.lg};
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: ${({ theme }) => theme.shadows.glow};
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 
   &:active {
     transform: translateY(-2px);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 
   @media (max-width: 768px) {

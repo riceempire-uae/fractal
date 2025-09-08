@@ -146,6 +146,10 @@ const ReferralItem = styled.div`
   gap: 1rem;
   align-items: center;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   cursor: pointer;
   
   &:hover {
@@ -175,6 +179,10 @@ const NextLevelButton = styled.div`
   border-radius: 8px;
   color: #f5c04a;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   
   &:hover {
     background: rgba(245, 192, 74, 0.2);

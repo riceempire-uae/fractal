@@ -84,6 +84,10 @@ const MainTab = styled.button<{ active: boolean }>`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -110,6 +114,10 @@ const SubTab = styled.button<{ active: boolean }>`
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -136,6 +144,10 @@ const RecordRow = styled.div`
   gap: 1rem;
   align-items: center;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   
   &:hover {
     background: rgba(11, 26, 43, 0.8);

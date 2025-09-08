@@ -104,8 +104,15 @@
   100% { background-position: calc(200px + 100%) 0; }
 }
 
-/* Responsive */
+/* Ensure loading animations work on mobile */
 @media (max-width: 768px) {
+  .loading-container * {
+    animation-duration: unset !important;
+    animation-iteration-count: unset !important;
+    transition-duration: unset !important;
+    transform: unset !important;
+  }
+  
   .loading-text {
     font-size: 2rem;
   }

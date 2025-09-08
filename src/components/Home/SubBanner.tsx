@@ -20,6 +20,10 @@ const SubBannerCard = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
 
   &:hover {
     transform: translateY(-4px);
