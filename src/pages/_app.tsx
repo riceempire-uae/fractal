@@ -24,6 +24,7 @@ import ExportButtonComponent from '../components/ExportButton';
 import { Toaster } from 'react-hot-toast';
 import StyledComponentsRegistry from '../lib/registry';
 import '../styles/globals.css';
+import '../styles/loading.css';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('home');

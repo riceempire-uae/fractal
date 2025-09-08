@@ -237,8 +237,17 @@ interface LoadingProps {
 const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState('Initializing...');
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Set client-side flag
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    // Only run on client side
+    if (!isClient) return;
+
     const loadingSteps = [
       { progress: 20, text: 'Loading assets...' },
       { progress: 40, text: 'Connecting to network...' },
@@ -262,8 +271,32 @@ const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
       }
     }, 800);
 
-    return () => clearInterval(interval);
-  }, [onComplete]);
+    // Fallback timeout in case animations don't work
+    const fallbackTimeout = setTimeout(() => {
+      onComplete();
+    }, 10000); // 10 seconds max
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(fallbackTimeout);
+    };
+  }, [onComplete, isClient]);
+
+  // Fallback for when styled-components doesn't work
+  if (!isClient) {
+    return (
+      <div className="loading-container">
+        <div className="loading-logo">F</div>
+        <div className="loading-text">Fractal</div>
+        <div className="loading-subtext">Decentralized Finance Platform</div>
+        <div className="loading-spinner"></div>
+        <div className="loading-progress">
+          <div className="loading-progress-bar" style={{ width: `${progress}%` }}></div>
+        </div>
+        <div className="loading-status">{loadingText}</div>
+      </div>
+    );
+  }
 
   return (
     <LoadingContainer>

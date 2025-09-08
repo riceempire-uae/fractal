@@ -32,6 +32,7 @@
   for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css"
 
 [[headers]]
   for = "/*.png"
