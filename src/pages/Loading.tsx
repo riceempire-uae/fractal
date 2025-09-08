@@ -197,6 +197,16 @@ const ProgressText = styled.div`
   text-align: center;
 `;
 
+const PoweredByText = styled.div`
+  font-size: 0.8rem;
+  color: #f5c04a;
+  opacity: 0.6;
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+`;
+
 const FeatureList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -249,11 +259,11 @@ const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
     if (!isClient) return;
 
     const loadingSteps = [
-      { progress: 20, text: 'Loading assets...' },
-      { progress: 40, text: 'Connecting to network...' },
-      { progress: 60, text: 'Syncing data...' },
+      { progress: 20, text: 'Loading components...' },
+      { progress: 40, text: 'Connecting to secure network...' },
+      { progress: 60, text: 'Syncing blocks data...' },
       { progress: 80, text: 'Preparing interface...' },
-      { progress: 100, text: 'Almost ready...' }
+      { progress: 100, text: 'Entering platform...' }
     ];
 
     let currentStep = 0;
@@ -317,7 +327,7 @@ const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
           <LogoRing />
         </LogoContainer>
 
-        <LoadingText>Fractal</LoadingText>
+        <LoadingText>Fractal Community</LoadingText>
         <SubText>Decentralized Finance Platform</SubText>
 
         <LoadingSpinner>
@@ -334,6 +344,8 @@ const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
         </ProgressContainer>
 
         <ProgressText>{loadingText}</ProgressText>
+
+        <PoweredByText>Powered by Fractal Technology</PoweredByText>
 
         <FeatureList>
           <FeatureItem>

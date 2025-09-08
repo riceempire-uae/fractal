@@ -59,6 +59,10 @@ const BalanceCard = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
   margin-bottom: 2rem;
 `;
 
@@ -126,6 +130,10 @@ const HistoryButton = styled.button`
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: scale(1.05);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -381,6 +389,10 @@ const RecordsCard = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const RecordsHeader = styled.div`
@@ -716,6 +728,10 @@ const ModalContent = styled(motion.div)`
   position: relative;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -1339,10 +1355,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showMiningModal && (
           <ModalOverlay onClick={handleCancelMining}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Prompt</ModalTitle>
@@ -1362,10 +1378,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showMiningSuccessModal && (
           <ModalOverlay onClick={handleCloseMiningSuccess}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Success</ModalTitle>
@@ -1382,10 +1398,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showGasMiningModal && (
           <ModalOverlay onClick={handleCancelGasMining}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Prompt</ModalTitle>
@@ -1405,10 +1421,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showGasMiningSuccessModal && (
           <ModalOverlay onClick={handleCloseGasMiningSuccess}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Success</ModalTitle>
@@ -1425,10 +1441,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showTerminateModal && (
           <ModalOverlay onClick={handleCancelTerminate}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Prompt</ModalTitle>
@@ -1448,10 +1464,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showFtl2TerminateModal && (
           <ModalOverlay onClick={handleCancelFtl2Terminate}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Prompt</ModalTitle>
@@ -1471,10 +1487,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showExtractConfirmModal && (
           <ModalOverlay onClick={handleCancelExtractConfirm}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Prompt</ModalTitle>
@@ -1494,10 +1510,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showBalanceExtractConfirmModal && (
           <ModalOverlay onClick={handleCancelBalanceExtractConfirm}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Prompt</ModalTitle>
@@ -1517,10 +1533,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showBalanceExtractModal && (
           <ModalOverlay onClick={handleCancelBalanceExtract}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <CloseButton onClick={handleCancelBalanceExtract}>
@@ -1549,10 +1565,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showExtractSuccessModal && (
           <ModalOverlay onClick={handleCloseExtractSuccess}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Success</ModalTitle>
@@ -1569,10 +1585,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showBalanceExtractSuccessModal && (
           <ModalOverlay onClick={handleCloseBalanceExtractSuccess}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Success</ModalTitle>
@@ -1589,10 +1605,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showTransferModal && (
           <ModalOverlay onClick={handleCancelTransfer}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <CloseButton onClick={handleCancelTransfer}>
@@ -1635,10 +1651,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showTransferSuccessModal && (
           <ModalOverlay onClick={handleCloseTransferSuccess}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <ModalTitle>Success</ModalTitle>
@@ -1655,10 +1671,10 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
         {showExtractModal && (
           <ModalOverlay onClick={handleCancelExtract}>
             <ModalContent
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
             >
               <CloseButton onClick={handleCancelExtract}>

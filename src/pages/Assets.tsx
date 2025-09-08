@@ -66,6 +66,10 @@ const AssetCard = styled.div`
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
   margin-bottom: 1rem;
   transition: all 0.2s ease;
   
@@ -163,6 +167,10 @@ const ActionButton = styled.button`
   
   &:hover {
     transform: scale(1.05);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -214,6 +222,10 @@ const ModalContent = styled(motion.div)`
   position: relative;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -527,10 +539,10 @@ const Assets: React.FC<AssetsProps> = ({ onNavigate }) => {
       {showDepositModal && (
         <ModalOverlay onClick={handleCloseDeposit}>
           <ModalContent
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
           >
             <CloseButton onClick={handleCloseDeposit}>
@@ -563,10 +575,10 @@ const Assets: React.FC<AssetsProps> = ({ onNavigate }) => {
       {showApproveModal && (
         <ModalOverlay onClick={handleCloseApprove}>
           <ModalContent
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
           >
             <CloseButton onClick={handleCloseApprove}>
@@ -594,10 +606,10 @@ const Assets: React.FC<AssetsProps> = ({ onNavigate }) => {
       {showWithdrawModal && (
         <ModalOverlay onClick={handleCloseWithdraw}>
           <ModalContent
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
           >
             <CloseButton onClick={handleCloseWithdraw}>
@@ -630,10 +642,10 @@ const Assets: React.FC<AssetsProps> = ({ onNavigate }) => {
       {showWithdrawSuccessModal && (
         <ModalOverlay onClick={handleCloseWithdrawSuccess}>
           <ModalContent
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
           >
             <ModalTitle>Success</ModalTitle>

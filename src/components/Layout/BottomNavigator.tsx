@@ -11,6 +11,10 @@ const NavigatorContainer = styled.nav`
   z-index: ${({ theme }) => theme.zIndex.fixed};
   background: ${({ theme }) => theme.colors.gradient.glass};
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   padding: 0.5rem 0;
 `;

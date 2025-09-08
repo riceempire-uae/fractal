@@ -60,6 +60,10 @@ const SwapCard = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const SwapSection = styled.div`
@@ -137,6 +141,10 @@ const SwapIcon = styled.button`
   &:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(238, 245, 255, 0.3);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 
@@ -213,6 +221,10 @@ const RecordsSection = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const RecordsHeader = styled.div`

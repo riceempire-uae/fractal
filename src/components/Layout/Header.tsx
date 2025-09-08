@@ -12,6 +12,10 @@ const HeaderContainer = styled.header`
   z-index: ${({ theme }) => theme.zIndex.fixed};
   background: ${({ theme }) => theme.colors.gradient.glass};
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   padding: 0.75rem 1rem;
 `;

@@ -35,6 +35,10 @@ const PerformanceIcon = styled.div`
   justify-content: center;
   color: white;
   backdrop-filter: blur(10px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
   border: 1px solid rgba(255, 255, 255, 0.3);
 `;
 
@@ -175,6 +179,10 @@ const NextLevelButton = styled.div`
   &:hover {
     background: rgba(245, 192, 74, 0.2);
     transform: scale(1.05);
+    
+    @media (max-width: 768px) {
+      transform: none;
+    }
   }
 `;
 

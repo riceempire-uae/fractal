@@ -24,6 +24,10 @@ const AIFundContainer = styled.div`
   width: 100%;
   max-width: 400px;
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const AIFundHeader = styled.div`

@@ -83,6 +83,10 @@ const AnnouncementCard = styled.div`
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
+  
+  @media (max-width: 768px) {
+    backdrop-filter: none;
+  }
 `;
 
 const AnnouncementHeader = styled.div`
