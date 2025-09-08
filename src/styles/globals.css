@@ -16,6 +16,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  touch-action: manipulation;
 }
 
 /* Allow text selection in input fields */
@@ -27,21 +28,29 @@ input, textarea {
   user-select: text;
 }
 
-/* Improve touch performance and prevent zoom on double tap */
-* {
-  touch-action: manipulation;
-}
-
-/* Disable all animations on mobile to prevent shaking and glitches */
+/* Disable problematic animations on mobile to prevent shaking and glitches */
 @media (max-width: 768px) {
-  /* Only disable animations for non-loading elements */
-  body:not(.loading-page) *,
-  body:not(.loading-page) *::before,
-  body:not(.loading-page) *::after {
+  /* Disable only transform-based animations that cause shaking */
+  body:not(.loading-page) * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    /* Prevent blinking */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Disable specific transform animations that cause shaking */
+  body:not(.loading-page) *:hover {
+    transform: none !important;
+  }
+  
+  /* Disable specific transform animations that cause shaking */
+  body:not(.loading-page) *:active {
+    transform: none !important;
   }
   
   /* Disable framer-motion animations on mobile */
@@ -50,9 +59,15 @@ input, textarea {
     transition: none !important;
   }
   
-  /* Disable all transform animations except for loading page */
-  body:not(.loading-page) * {
-    transform: none !important;
+  /* Prevent blinking on interactive elements */
+  body:not(.loading-page) button,
+  body:not(.loading-page) input,
+  body:not(.loading-page) select,
+  body:not(.loading-page) textarea {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 }
 
@@ -71,6 +86,17 @@ body {
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  /* Additional mobile stability */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent blinking */
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 body {
