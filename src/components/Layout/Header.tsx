@@ -139,9 +139,19 @@ const Header: React.FC = () => {
   const languages = [
     { code: 'EN' as const, name: 'English' },
     { code: 'ZH-TW' as const, name: '繁體中文' },
-    { code: 'JA' as const, name: '日本語' },
     { code: 'KO' as const, name: '한국어' },
+    { code: 'JA' as const, name: '日本語' },
+
   ];
+
+  const getLanguageDisplay = (lang: string) => {
+    switch (lang) {
+      case 'ZH-TW':
+        return 'ZH';
+      default:
+        return lang;
+    }
+  };
 
   return (
     <HeaderContainer>
@@ -168,7 +178,7 @@ const Header: React.FC = () => {
           <LanguageSelector>
             <LanguageButton onClick={() => setIsLanguageOpen(!isLanguageOpen)}>
               <Globe size={18} />
-              {language}
+              {getLanguageDisplay(language)}
               <ChevronDown size={14} />
             </LanguageButton>
             

@@ -98,16 +98,25 @@ const LogoContainer = styled.div`
 const Logo = styled.div`
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, #f5c04a 0%, #d4a843 100%);
+  background: rgba(11, 26, 43, 0.8);
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  font-weight: 900;
-  color: #0b1a2b;
+  gap: 8px;
   animation: ${glow} 2s ease-in-out infinite;
   box-shadow: 0 20px 40px rgba(245, 192, 74, 0.3);
+  border: 2px solid rgba(245, 192, 74, 0.3);
+`;
+
+const LogoDot = styled.div<{ $color: string; $delay: number }>`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: ${({ $color }) => $color};
+  animation: ${pulse} 2s ease-in-out infinite;
+  animation-delay: ${({ $delay }) => $delay}s;
+  box-shadow: 0 0 15px ${({ $color }) => $color}40;
 `;
 
 const LogoRing = styled.div`
@@ -296,7 +305,11 @@ const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
   if (!isClient) {
     return (
       <div className="loading-container">
-        <div className="loading-logo">F</div>
+        <div className="loading-logo">
+          <div className="loading-dot" style={{ background: '#ef4444', animationDelay: '0s' }}></div>
+          <div className="loading-dot" style={{ background: '#f5c04a', animationDelay: '0.3s' }}></div>
+          <div className="loading-dot" style={{ background: '#3b82f6', animationDelay: '0.6s' }}></div>
+        </div>
         <div className="loading-text">Fractal</div>
         <div className="loading-subtext">Decentralized Finance Platform</div>
         <div className="loading-spinner"></div>
@@ -323,7 +336,11 @@ const Loading: React.FC<LoadingProps> = ({ onComplete }) => {
 
       <MainContent>
         <LogoContainer>
-          <Logo>F</Logo>
+          <Logo>
+            <LogoDot $color="#ef4444" $delay={0} />
+            <LogoDot $color="#f5c04a" $delay={0.3} />
+            <LogoDot $color="#3b82f6" $delay={0.6} />
+          </Logo>
           <LogoRing />
         </LogoContainer>
 

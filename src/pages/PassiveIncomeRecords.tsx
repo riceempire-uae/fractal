@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, FileText, Calendar, DollarSign, Hash } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const RecordsContainer = styled.div`
   min-height: 100vh;
@@ -230,6 +231,8 @@ interface PassiveIncomeRecordsProps {
 }
 
 const PassiveIncomeRecords: React.FC<PassiveIncomeRecordsProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
+  
   const passiveIncomeRecords = [
     {
       date: '15-01-25 13:14:50',
@@ -292,7 +295,7 @@ const PassiveIncomeRecords: React.FC<PassiveIncomeRecordsProps> = ({ onNavigate 
           </BackButton>
           <HeaderTitle>
             <FileText size={24} />
-            Passive Records
+{t('records.passiveRecords')}
           </HeaderTitle>
         </HeaderLeft>
       </Header>
@@ -308,20 +311,20 @@ const PassiveIncomeRecords: React.FC<PassiveIncomeRecordsProps> = ({ onNavigate 
               <RecordsIcon>
                 <FileText size={30} />
               </RecordsIcon>
-              <RecordsTitle>Transactions</RecordsTitle>
+              <RecordsTitle>{t('records.transactions')}</RecordsTitle>
             </RecordsHeader>
 
             <RecordsTable>
               <TableHeader>
                 <HeaderCell>
                   <Calendar size={16} />
-                  Date
-                </HeaderCell>
-                <HeaderCell>
-                  Amount
+{t('records.date')}
                 </HeaderCell>
                 <HeaderCell style={{ justifyContent: 'center', textAlign: 'center' }}>
-                  Type
+{t('records.amount')}
+                </HeaderCell>
+                <HeaderCell style={{ justifyContent: 'center', textAlign: 'center' }}>
+{t('records.type')}
                 </HeaderCell>
               </TableHeader>
 
@@ -331,7 +334,7 @@ const PassiveIncomeRecords: React.FC<PassiveIncomeRecordsProps> = ({ onNavigate 
                     <TableRow key={index}>
                       <DateCell>{record.date}</DateCell>
                       <AmountCell>{record.amount}</AmountCell>
-                      <TypeCell>{record.type}</TypeCell>
+                      <TypeCell>{t('records.roi')}</TypeCell>
                     </TableRow>
                   ))
                 ) : (
@@ -341,9 +344,9 @@ const PassiveIncomeRecords: React.FC<PassiveIncomeRecordsProps> = ({ onNavigate 
                         <EmptyIcon>
                           <FileText size={40} />
                         </EmptyIcon>
-                        <EmptyTitle>No Records Found</EmptyTitle>
+                        <EmptyTitle>{t('records.noRecordsFound')}</EmptyTitle>
                         <EmptyDescription>
-                          Your passive income records will appear here
+                          {t('records.passiveIncomeRecordsDescription')}
                         </EmptyDescription>
                       </EmptyState>
                     </TableCell>

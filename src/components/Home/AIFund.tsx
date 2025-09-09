@@ -623,15 +623,15 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
   const stats = [
     {
       value: '360',
-      label: 'Round (Day)',
+      label: t('home.roundDay'),
     },
     {
       value: '1.0',
-      label: 'Daily ROI (%)',
+      label: t('home.dailyROI'),
     },
     {
       value: '100',
-      label: 'Minimum (USDT)',
+      label: t('home.minimumUSDT'),
     },
   ];
 
@@ -658,7 +658,7 @@ const AIFund: React.FC<AIFundProps> = ({ onNavigate }) => {
           <AIFundIcon>
             <Brain size={24} />
           </AIFundIcon>
-          <AIFundTitle>360 Ai Fund</AIFundTitle>
+          <AIFundTitle>{t('home.aiFundTitle')}</AIFundTitle>
         </AIFundHeader>
         
         <AIFundStats>

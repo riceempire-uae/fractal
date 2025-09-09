@@ -9,6 +9,7 @@ import {
   DollarSign,
   Clock
 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const EarningsContainer = styled.div`
   display: grid;
@@ -146,27 +147,29 @@ interface EarningsDisplayProps {
 }
 
 const EarningsDisplay: React.FC<EarningsDisplayProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
+  
   const earnings = [
     {
       type: 'passive' as const,
-      title: 'Passive Income',
+      title: t('home.passiveIncome'),
       amount: '$2,847.32',
-      subtext: 'From staking and rewards',
+      subtext: t('home.fromStakingRewards'),
       icon: TrendingUp,
       stats: [
-        { icon: DollarSign, value: '100', label: 'Today Payout' },
-        { icon: Clock, value: '24h', label: 'Next Payout' },
+        { icon: DollarSign, value: '100', label: t('home.todayPayout') },
+        { icon: Clock, value: '24h', label: t('home.nextPayout') },
       ],
     },
     {
       type: 'active' as const,
-      title: 'Active Income',
+      title: t('home.activeIncome'),
       amount: '$1,523.18',
-      subtext: 'From trading and activities',
+      subtext: t('home.fromTradingActivities'),
       icon: Activity,
       stats: [
-        { icon: Activity, value: '159.99', label: 'Today Earnings' },
-        { icon: Clock, value: '09:00', label: 'Payout Time' },
+        { icon: Activity, value: '159.99', label: t('home.todayEarnings') },
+        { icon: Clock, value: '09:00', label: t('home.payoutTime') },
       ],
     },
   ];

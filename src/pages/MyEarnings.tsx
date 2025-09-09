@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, TrendingUp, DollarSign, Clock, FileText, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const EarningsContainer = styled.div`
   min-height: 100vh;
@@ -181,6 +182,7 @@ interface MyEarningsProps {
 }
 
 const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'passive' | 'active'>('passive');
 
   const passiveIncomeData = {
@@ -218,7 +220,7 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
           <BackButton onClick={() => onNavigate?.('home')}>
             <ArrowLeft size={20} />
           </BackButton>
-          <HeaderTitle>My Earnings</HeaderTitle>
+          <HeaderTitle>{t('earnings.title')}</HeaderTitle>
         </HeaderLeft>
       </Header>
 
@@ -233,7 +235,7 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
             <IncomeCard>
               <IncomeHeader>
                 <div>
-                  <IncomeTitle>Passive Income</IncomeTitle>
+                  <IncomeTitle>{t('home.passiveIncome')}</IncomeTitle>
                 </div>
                 <ViewRecordButton onClick={() => handleViewRecords('passive')}>
                   <FileText size={20} />
@@ -243,10 +245,10 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
               <EarningsSection>
                 <SectionTitle>
                   <Clock size={20} />
-                  Today's Earnings
+{t('home.todayEarnings')}
                 </SectionTitle>
                 <EarningsRow>
-                  <EarningsLabel>Amount</EarningsLabel>
+                  <EarningsLabel>{t('earnings.amount')}</EarningsLabel>
                   <EarningsValue>
                     {passiveIncomeData.todayEarnings}
                   </EarningsValue>
@@ -256,10 +258,10 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
               <EarningsSection>
                 <SectionTitle>
                   <DollarSign size={20} />
-                  Accumulated Earnings
+{t('home.accumulatedEarnings')}
                 </SectionTitle>
                 <EarningsRow>
-                  <EarningsLabel>Total Amount</EarningsLabel>
+                  <EarningsLabel>{t('earnings.totalAmount')}</EarningsLabel>
                   <EarningsValue>
                     {passiveIncomeData.accumulatedEarnings}
                   </EarningsValue>
@@ -270,7 +272,7 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
             <IncomeCard>
               <IncomeHeader>
                 <div>
-                  <IncomeTitle>Active Income</IncomeTitle>
+                  <IncomeTitle>{t('home.activeIncome')}</IncomeTitle>
                 </div>
                 <ViewRecordButton onClick={() => handleViewRecords('active')}>
                   <FileText size={20} />
@@ -280,10 +282,10 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
               <EarningsSection>
                 <SectionTitle>
                   <Clock size={20} />
-                  Today's Earnings
+{t('home.todayEarnings')}
                 </SectionTitle>
                 <EarningsRow>
-                  <EarningsLabel>Amount</EarningsLabel>
+                  <EarningsLabel>{t('earnings.amount')}</EarningsLabel>
                   <EarningsValue>
                     {activeIncomeData.todayEarnings}
                   </EarningsValue>
@@ -293,10 +295,10 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
               <EarningsSection>
                 <SectionTitle>
                   <DollarSign size={20} />
-                  Accumulated Earnings
+{t('home.accumulatedEarnings')}
                 </SectionTitle>
                 <EarningsRow>
-                  <EarningsLabel>Total Amount</EarningsLabel>
+                  <EarningsLabel>{t('earnings.totalAmount')}</EarningsLabel>
                   <EarningsValue>
                     {activeIncomeData.accumulatedEarnings}
                   </EarningsValue>
@@ -307,7 +309,7 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
             <IncomeCard>
               <IncomeHeader>
                 <div>
-                  <IncomeTitle>Mining Income</IncomeTitle>
+                  <IncomeTitle>{t('home.miningIncome')}</IncomeTitle>
                 </div>
                 <ViewRecordButton onClick={() => handleViewRecords('mining')}>
                   <FileText size={20} />
@@ -317,16 +319,16 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
               <EarningsSection>
                 <SectionTitle>
                   <Clock size={20} />
-                  Today's Earnings
+{t('home.todayEarnings')}
                 </SectionTitle>
                 <EarningsRow>
-                  <EarningsLabel>FTL</EarningsLabel>
+                  <EarningsLabel>{t('earnings.ftl')}</EarningsLabel>
                   <EarningsValue>
                     {miningIncomeData.ftlTodayEarnings}
                   </EarningsValue>
                 </EarningsRow>
                 <EarningsRow>
-                  <EarningsLabel>GAS</EarningsLabel>
+                  <EarningsLabel>{t('earnings.gas')}</EarningsLabel>
                   <EarningsValue>
                     {miningIncomeData.gasTodayEarnings}
                   </EarningsValue>
@@ -336,16 +338,16 @@ const MyEarnings: React.FC<MyEarningsProps> = ({ onNavigate }) => {
               <EarningsSection>
                 <SectionTitle>
                   <DollarSign size={20} />
-                  Accumulated Earnings
+{t('home.accumulatedEarnings')}
                 </SectionTitle>
                 <EarningsRow>
-                  <EarningsLabel>FTL</EarningsLabel>
+                  <EarningsLabel>{t('earnings.ftl')}</EarningsLabel>
                   <EarningsValue>
                     {miningIncomeData.ftlAccumulatedEarnings}
                   </EarningsValue>
                 </EarningsRow>
                 <EarningsRow>
-                  <EarningsLabel>GAS</EarningsLabel>
+                  <EarningsLabel>{t('earnings.gas')}</EarningsLabel>
                   <EarningsValue>
                     {miningIncomeData.gasAccumulatedEarnings}
                   </EarningsValue>

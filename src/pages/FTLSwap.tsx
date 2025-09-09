@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, RefreshCw, ArrowUpDown, Clock, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const SwapContainer = styled.div`
   min-height: 100vh;
@@ -385,6 +386,7 @@ interface FTLSwapProps {
 }
 
 const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [fromAmount, setFromAmount] = useState('');
   const [toAmount, setToAmount] = useState('0');
   const [isSwapping, setIsSwapping] = useState(false);
@@ -397,7 +399,7 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
     {
       id: 1,
       orderId: 'SWP-2024-001',
-      type: 'FTL → USDT',
+      type: t('swap.ftlToUsdt'),
       amount: '100 FTL → 3.18 USDT',
       swapPrice: '0.0318',
       status: 'completed',
@@ -417,6 +419,20 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
       setToAmount('0');
     }
   };
+
+  const getSwapInfo = () => {
+    if (!fromAmount || isNaN(parseFloat(fromAmount))) {
+      return { usdtAmount: '0', destroyedAmount: '0' };
+    }
+    
+    const inputAmount = parseFloat(fromAmount);
+    const usdtAmount = (inputAmount * parseFloat(ftlPrice)).toFixed(4);
+    const destroyedAmount = (inputAmount * 0.4).toFixed(4); // 40% destruction ratio
+    
+    return { usdtAmount, destroyedAmount };
+  };
+
+  const { usdtAmount, destroyedAmount } = getSwapInfo();
   
   const handleSwap = async () => {
     if (!fromAmount || parseFloat(fromAmount) <= 0) return;
@@ -443,7 +459,7 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
           <BackButton onClick={() => onNavigate?.('home')}>
             <ArrowLeft size={20} />
           </BackButton>
-          <HeaderTitle>FTL Swap</HeaderTitle>
+          <HeaderTitle>{t('swap.title')}</HeaderTitle>
         </HeaderLeft>
       </Header>
 
@@ -457,17 +473,17 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
             <BackgroundPattern />
             
             <SwapSection>
-              <SectionLabel>From</SectionLabel>
+              <SectionLabel>{t('swap.from')}</SectionLabel>
               <InputContainer>
                 <InputField
                   type="number"
-                  placeholder="Please enter the quantity"
+                  placeholder={t('swap.enterQuantity')}
                   value={fromAmount}
                   onChange={handleFromAmountChange}
                 />
                 <CurrencyLabel>FTL</CurrencyLabel>
               </InputContainer>
-              <BalanceText>Balance: {ftlBalance}</BalanceText>
+              <BalanceText>{t('swap.balance')}: {ftlBalance}</BalanceText>
             </SwapSection>
 
             <SwapIconContainer>
@@ -477,22 +493,39 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
             </SwapIconContainer>
 
             <SwapSection>
-              <SectionLabel>To</SectionLabel>
+              <SectionLabel>{t('swap.to')}</SectionLabel>
               <OutputContainer>
                 <OutputValue>{toAmount}</OutputValue>
                 <CurrencyLabel>USDT</CurrencyLabel>
               </OutputContainer>
               <PriceInfo>
-                <span>Price: {ftlPrice}</span>
-                <span>Destroy Ratio: {destructionRatio}</span>
+                <span>{t('swap.price')}: {ftlPrice}</span>
+                <span>{t('swap.destroyRatio')}: {destructionRatio}</span>
               </PriceInfo>
+              
+              {fromAmount && parseFloat(fromAmount) > 0 && (
+                <PriceInfo style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(245, 192, 74, 0.1)', borderRadius: '8px', border: '1px solid rgba(245, 192, 74, 0.2)' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: '#22c55e', fontWeight: '600' }}>
+                        {t('swap.youWillGet')}: {usdtAmount} {t('swap.usdt')}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: '#ef4444', fontWeight: '600' }}>
+                        {t('swap.willBeDestroyed')}: {destroyedAmount} {t('swap.ftl')}
+                      </span>
+                    </div>
+                  </div>
+                </PriceInfo>
+              )}
             </SwapSection>
 
             <ExchangeButton 
               onClick={handleSwap}
               disabled={!fromAmount || parseFloat(fromAmount) <= 0 || isSwapping}
             >
-              {isSwapping ? 'Swapping...' : 'Exchange'}
+              {isSwapping ? t('swap.swapping') : t('swap.exchange')}
             </ExchangeButton>
           </SwapCard>
 
@@ -500,7 +533,7 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
             <RecordsHeader>
               <RecordsTitle>
                 <Clock size={20} />
-                Swap Records
+                {t('swap.records')}
               </RecordsTitle>
               <RefreshButton onClick={handleRefresh}>
                 <RefreshCw size={16} />
@@ -512,26 +545,26 @@ const FTLSwap: React.FC<FTLSwapProps> = ({ onNavigate }) => {
                 <RecordItem key={record.id}>
                   <RecordInfo>
                     <RecordOrderId>
-                      <RecordOrderIdLabel>Order ID:</RecordOrderIdLabel>
+                      <RecordOrderIdLabel>{t('swap.orderId')}:</RecordOrderIdLabel>
                       <RecordOrderIdValue>{record.orderId}</RecordOrderIdValue>
                     </RecordOrderId>
                     <RecordDate>
-                      <RecordDateLabel>Date:</RecordDateLabel>
+                      <RecordDateLabel>{t('records.date')}:</RecordDateLabel>
                       <RecordDateValue>{record.date}</RecordDateValue>
                     </RecordDate>
                     <RecordAmount>
-                      <RecordAmountLabel>Swap Amount:</RecordAmountLabel>
+                      <RecordAmountLabel>{t('swap.swapAmount')}:</RecordAmountLabel>
                       <RecordAmountValue>{record.amount}</RecordAmountValue>
                     </RecordAmount>
                     <RecordSwapPrice>
-                      <RecordSwapPriceLabel>Price:</RecordSwapPriceLabel>
+                      <RecordSwapPriceLabel>{t('swap.price')}:</RecordSwapPriceLabel>
                       <RecordSwapPriceValue>${record.swapPrice}</RecordSwapPriceValue>
                     </RecordSwapPrice>
                   </RecordInfo>
                 </RecordItem>
               ))
             ) : (
-              <NoRecordsText>No swap records found</NoRecordsText>
+              <NoRecordsText>{t('swap.noRecords')}</NoRecordsText>
             )}
           </RecordsSection>
         </motion.div>

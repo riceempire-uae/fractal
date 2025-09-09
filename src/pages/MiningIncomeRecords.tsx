@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, FileText, Calendar, DollarSign, Hash, Wrench, Coins, Zap } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const RecordsContainer = styled.div`
   min-height: 100vh;
@@ -223,7 +224,7 @@ const DateCell = styled(TableCell)`
 const AmountCell = styled(TableCell)`
   font-weight: 700;
   color: #f5c04a;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
 const EmptyState = styled.div`
@@ -264,6 +265,7 @@ interface MiningIncomeRecordsProps {
 }
 
 const MiningIncomeRecords: React.FC<MiningIncomeRecordsProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'ftl' | 'gas'>('ftl');
 
   const ftlRecords = [
@@ -383,7 +385,7 @@ const MiningIncomeRecords: React.FC<MiningIncomeRecordsProps> = ({ onNavigate })
           </BackButton>
           <HeaderTitle>
             <Wrench size={24} />
-            Mining Records
+            {t('records.miningRecords')}
           </HeaderTitle>
         </HeaderLeft>
       </Header>
@@ -399,7 +401,7 @@ const MiningIncomeRecords: React.FC<MiningIncomeRecordsProps> = ({ onNavigate })
               <RecordsIcon>
                 <Wrench size={30} />
               </RecordsIcon>
-              <RecordsTitle>Mining Income</RecordsTitle>
+              <RecordsTitle>{t('records.miningIncome')}</RecordsTitle>
             </RecordsHeader>
 
             <TabContainer>
@@ -427,11 +429,11 @@ const MiningIncomeRecords: React.FC<MiningIncomeRecordsProps> = ({ onNavigate })
                 </HeaderCell>
                 <HeaderCell>
                   <Calendar size={16} />
-                  Date
+                  {t('records.date')}
                 </HeaderCell>
                 <HeaderCell>
                   <DollarSign size={16} />
-                  Amount
+                  {t('records.amount')}
                 </HeaderCell>
               </TableHeader>
 
@@ -451,9 +453,9 @@ const MiningIncomeRecords: React.FC<MiningIncomeRecordsProps> = ({ onNavigate })
                         <EmptyIcon>
                           {activeTab === 'ftl' ? <Coins size={40} /> : <Zap size={40} />}
                         </EmptyIcon>
-                        <EmptyTitle>No Records Found</EmptyTitle>
+                        <EmptyTitle>{t('records.noRecordsFound')}</EmptyTitle>
                         <EmptyDescription>
-                          Your {activeTab.toUpperCase()} records will appear here
+                          {t('records.miningIncomeDescription')}
                         </EmptyDescription>
                       </EmptyState>
                     </TableCell>

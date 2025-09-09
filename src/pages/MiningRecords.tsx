@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Coins, Zap, Calendar, Download, Wrench, TrendingUp, TrendingDown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const MiningRecordsContainer = styled.div`
   min-height: 100vh;
@@ -225,6 +226,7 @@ interface MiningRecordsProps {
 }
 
 const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [activeMainTab, setActiveMainTab] = useState<'ftl' | 'gas'>('ftl');
   const [activeSubTab, setActiveSubTab] = useState<'all' | 'in' | 'out'>('all');
 
@@ -232,19 +234,19 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
     {
       id: 'FTL001',
       date: '2025-9-01 19:06:40',
-      type: 'Mining Reward',
+      type: t('records.miningReward'),
       amount: '+125.50 FTL'
     },
     {
       id: 'FTL002',
       date: '2025-9-02 14:30:15',
-      type: 'Mining Reward',
+      type: t('records.miningReward'),
       amount: '+89.25 FTL'
     },
     {
       id: 'FTL003',
       date: '2025-9-03 10:15:30',
-      type: 'Mining Reward',
+      type: t('records.miningReward'),
       amount: '+200.75 FTL'
     }
   ];
@@ -253,7 +255,7 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
     {
       id: 'FTL004',
       date: '2025-9-01 20:15:22',
-      type: 'Extraction',
+      type: t('records.extraction'),
       amount: '-50.00 FTL'
     }
   ];
@@ -262,19 +264,19 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
     {
       id: 'GAS001',
       date: '2025-9-01 19:06:40',
-      type: 'Mining Reward',
+      type: t('records.miningReward'),
       amount: '+45.30 GAS'
     },
     {
       id: 'GAS002',
       date: '2025-9-02 14:30:15',
-      type: 'Mining Reward',
+      type: t('records.miningReward'),
       amount: '+32.15 GAS'
     },
     {
       id: 'GAS003',
       date: '2025-9-03 10:15:30',
-      type: 'Mining Reward',
+      type: t('records.miningReward'),
       amount: '+78.90 GAS'
     }
   ];
@@ -283,13 +285,13 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
     {
       id: 'GAS004',
       date: '2025-9-01 20:15:22',
-      type: 'Extraction',
+      type: t('records.extraction'),
       amount: '-25.00 GAS'
     },
     {
       id: 'GAS005',
       date: '2025-9-02 16:45:10',
-      type: 'Fee Payment',
+      type: t('records.feePayment'),
       amount: '-5.50 GAS'
     }
   ];
@@ -317,7 +319,7 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
           <BackButton onClick={() => onNavigate?.('passive-income-details')}>
             <ArrowLeft size={20} />
           </BackButton>
-          <HeaderTitle>Mining Records</HeaderTitle>
+          <HeaderTitle>{t('records.miningRecords')}</HeaderTitle>
         </HeaderLeft>
       </Header>
 
@@ -351,21 +353,21 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
                 onClick={() => setActiveSubTab('all')}
               >
                 <Calendar size={16} />
-                All
+                {t('records.all')}
               </SubTab>
               <SubTab
                 active={activeSubTab === 'in'}
                 onClick={() => setActiveSubTab('in')}
               >
                 <TrendingUp size={16} />
-                IN
+                {t('records.in')}
               </SubTab>
               <SubTab
                 active={activeSubTab === 'out'}
                 onClick={() => setActiveSubTab('out')}
               >
                 <TrendingDown size={16} />
-                OUT
+                {t('records.out')}
               </SubTab>
             </SubTabs>
 
@@ -373,7 +375,7 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
               {currentRecords.length > 0 ? (
                 currentRecords.map((record) => (
                   <RecordRow key={record.id}>
-                    <RecordOrderId>Order ID: {record.id}</RecordOrderId>
+                    <RecordOrderId>{t('records.orderId')}: {record.id}</RecordOrderId>
                     <RecordDate>
                       <Calendar size={16} />
                       {record.date}
@@ -387,9 +389,9 @@ const MiningRecords: React.FC<MiningRecordsProps> = ({ onNavigate }) => {
                   <EmptyIcon>
                     <Calendar size={40} />
                   </EmptyIcon>
-                  <EmptyTitle>No Records Found</EmptyTitle>
+                  <EmptyTitle>{t('records.noRecordsFound')}</EmptyTitle>
                   <EmptyDescription>
-                    Your {activeMainTab.toUpperCase()} {activeSubTab === 'all' ? 'ALL' : activeSubTab.toUpperCase()} records will appear here
+                    {t('records.miningRecordsDescription')}
                   </EmptyDescription>
                 </EmptyState>
               )}

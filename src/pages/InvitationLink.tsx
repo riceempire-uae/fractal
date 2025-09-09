@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Copy, Share2, QrCode, Download } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const InvitationContainer = styled.div`
   min-height: 100vh;
@@ -259,6 +260,7 @@ interface InvitationLinkProps {
 }
 
 const InvitationLink: React.FC<InvitationLinkProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   
   const referralLink = 'http://dapp.fractaltech.ai/wap/#/?intro=0xb48dbd5fe736124F9AdCE253393B135794cc6d38';
@@ -278,8 +280,8 @@ const InvitationLink: React.FC<InvitationLinkProps> = ({ onNavigate }) => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Join Fractal Community',
-          text: 'Join me on Fractal - the future of decentralized finance!',
+          title: t('invitation.joinTitle'),
+          text: t('invitation.joinText'),
           url: referralLink,
         });
       } catch (err) {
@@ -308,7 +310,7 @@ const InvitationLink: React.FC<InvitationLinkProps> = ({ onNavigate }) => {
           <BackButton onClick={() => onNavigate?.('home')}>
             <ArrowLeft size={20} />
           </BackButton>
-          <HeaderTitle>Invitation Link</HeaderTitle>
+          <HeaderTitle>{t('invitation.title')}</HeaderTitle>
         </HeaderLeft>
       </Header>
 
@@ -324,20 +326,20 @@ const InvitationLink: React.FC<InvitationLinkProps> = ({ onNavigate }) => {
               <CardIcon>
                 <Share2 size={32} />
               </CardIcon>
-              <CardTitle>Invite Friends</CardTitle>
-              <CardSubtitle>Share your referral link and earn rewards together</CardSubtitle>
+              <CardTitle>{t('invitation.inviteFriends')}</CardTitle>
+              <CardSubtitle>{t('invitation.inviteDescription')}</CardSubtitle>
             </CardHeader>
 
             <LinkSection>
               <SectionTitle>
                 <Copy size={20} />
-                Your Referral Link
+                {t('invitation.referralLink')}
               </SectionTitle>
               <LinkContainer>
                 <LinkText>{referralLink}</LinkText>
                 <CopyButton onClick={handleCopyLink}>
                   <Copy size={16} />
-                  {copied ? 'Copied!' : 'Copy'}
+                  {copied ? t('invitation.copied') : t('invitation.copy')}
                 </CopyButton>
               </LinkContainer>
             </LinkSection>
@@ -345,7 +347,7 @@ const InvitationLink: React.FC<InvitationLinkProps> = ({ onNavigate }) => {
             <QRCodeSection>
               <SectionTitle>
                 <QrCode size={20} />
-                QR Code
+                {t('invitation.qrCode')}
               </SectionTitle>
               <QRCodeContainer>
                 <QRCodeImage 
@@ -378,17 +380,17 @@ const InvitationLink: React.FC<InvitationLinkProps> = ({ onNavigate }) => {
                   (200x200)
                 </div>
               </QRCodeContainer>
-              <QRCodeText>Scan to join Fractal Community</QRCodeText>
+              <QRCodeText>{t('invitation.scanToJoin')}</QRCodeText>
             </QRCodeSection>
 
             <ActionButtons>
               <ActionButton onClick={handleShare}>
                 <Share2 size={20} />
-                Share
+                {t('invitation.share')}
               </ActionButton>
               <ActionButton onClick={handleDownloadQR}>
                 <Download size={20} />
-                Download
+                {t('invitation.download')}
               </ActionButton>
             </ActionButtons>
 

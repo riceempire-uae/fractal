@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { ArrowLeft, FileText, Calendar, DollarSign, Hash, TrendingUp, Gift, Users, Star, Award, Crown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const RecordsContainer = styled.div`
   min-height: 100vh;
@@ -285,58 +286,59 @@ interface ActiveIncomeRecordsProps {
 }
 
 const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'all' | 'generation' | 'newacc' | 'management' | 'level'>('all');
 
   const allRecords = [
     {
       date: '15-01-25 14:30:15',
       amount: '89.25',
-      type: 'Generation Bonus'
+      type: t('records.generationBonus')
     },
     {
       date: '14-01-25 13:45:30',
       amount: '45.50',
-      type: 'New Acc Bonus'
+      type: t('records.newAccBonus')
     },
     {
       date: '13-01-25 12:20:45',
       amount: '67.80',
-      type: 'Management Bonus'
+      type: t('records.managementBonus')
     },
     {
       date: '12-01-25 11:15:20',
       amount: '32.40',
-      type: 'Level Bonus'
+      type: t('records.levelBonus')
     },
     {
       date: '11-01-25 10:30:10',
       amount: '91.75',
-      type: 'Generation Bonus'
+      type: t('records.generationBonus')
     },
     {
       date: '10-01-25 09:45:35',
       amount: '28.90',
-      type: 'New Acc Bonus'
+      type: t('records.newAccBonus')
     },
     {
       date: '09-01-25 08:20:25',
       amount: '54.15',
-      type: 'Management Bonus'
+      type: t('records.managementBonus')
     },
     {
       date: '08-01-25 07:35:40',
       amount: '76.60',
-      type: 'Level Bonus'
+      type: t('records.levelBonus')
     },
     {
       date: '07-01-25 06:50:15',
       amount: '43.25',
-      type: 'Generation Bonus'
+      type: t('records.generationBonus')
     },
     {
       date: '06-01-25 05:25:50',
       amount: '58.80',
-      type: 'New Acc Bonus'
+      type: t('records.newAccBonus')
     }
   ];
 
@@ -345,13 +347,13 @@ const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate })
     : allRecords.filter(record => {
         switch (activeTab) {
           case 'generation':
-            return record.type === 'Generation Bonus';
+            return record.type === t('records.generationBonus');
           case 'newacc':
-            return record.type === 'New Acc Bonus';
+            return record.type === t('records.newAccBonus');
           case 'management':
-            return record.type === 'Management Bonus';
+            return record.type === t('records.managementBonus');
           case 'level':
-            return record.type === 'Level Bonus';
+            return record.type === t('records.levelBonus');
           default:
             return true;
         }
@@ -383,7 +385,7 @@ const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate })
           </BackButton>
           <HeaderTitle>
             <TrendingUp size={24} />
-            Active Records
+            {t('records.activeRecords')}
           </HeaderTitle>
         </HeaderLeft>
       </Header>
@@ -399,7 +401,7 @@ const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate })
               <RecordsIcon>
                 <TrendingUp size={30} />
               </RecordsIcon>
-              <RecordsTitle>Transactions</RecordsTitle>
+              <RecordsTitle>{t('records.transactions')}</RecordsTitle>
             </RecordsHeader>
 
             <TabContainer>
@@ -408,35 +410,35 @@ const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate })
                 onClick={() => setActiveTab('all')}
               >
                 {getTabIcon('all')}
-                All Bonuses
+                {t('records.allBonuses')}
               </TabButton>
               <TabButton 
                 $active={activeTab === 'generation'} 
                 onClick={() => setActiveTab('generation')}
               >
                 {getTabIcon('generation')}
-                Generation Bonus
+                {t('records.generationBonus')}
               </TabButton>
               <TabButton 
                 $active={activeTab === 'newacc'} 
                 onClick={() => setActiveTab('newacc')}
               >
                 {getTabIcon('newacc')}
-                New Acc Bonus
+                {t('records.newAccBonus')}
               </TabButton>
               <TabButton 
                 $active={activeTab === 'management'} 
                 onClick={() => setActiveTab('management')}
               >
                 {getTabIcon('management')}
-                Management Bonus
+                {t('records.managementBonus')}
               </TabButton>
               <TabButton 
                 $active={activeTab === 'level'} 
                 onClick={() => setActiveTab('level')}
               >
                 {getTabIcon('level')}
-                Level Bonus
+                {t('records.levelBonus')}
               </TabButton>
             </TabContainer>
 
@@ -444,13 +446,13 @@ const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate })
               <TableHeader>
                 <HeaderCell>
                   <Calendar size={16} />
-                  Date
+                  {t('records.date')}
                 </HeaderCell>
-                <HeaderCell>
-                  Amount
+                <HeaderCell style={{ justifyContent: 'center', textAlign: 'center' }}>
+                  {t('records.amount')}
                 </HeaderCell>
-                <HeaderCell>
-                  Type
+                <HeaderCell style={{ justifyContent: 'left', textAlign: 'center' }}>
+                  {t('records.type')}
                 </HeaderCell>
               </TableHeader>
 
@@ -470,9 +472,9 @@ const ActiveIncomeRecords: React.FC<ActiveIncomeRecordsProps> = ({ onNavigate })
                         <EmptyIcon>
                           <TrendingUp size={40} />
                         </EmptyIcon>
-                        <EmptyTitle>No Records Found</EmptyTitle>
+                        <EmptyTitle>{t('records.noRecordsFound')}</EmptyTitle>
                         <EmptyDescription>
-                          Your {activeTab === 'all' ? 'bonus' : activeTab.replace('newacc', 'new account')} records will appear here
+                          {t('records.bonusRecordsDescription')}
                         </EmptyDescription>
                       </EmptyState>
                     </TableCell>
