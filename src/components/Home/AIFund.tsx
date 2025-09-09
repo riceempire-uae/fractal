@@ -27,6 +27,7 @@ const AIFundContainer = styled.div`
   
   @media (max-width: 768px) {
     backdrop-filter: none;
+    max-width: none;
   }
 `;
 
@@ -74,6 +75,10 @@ const StatCard = styled.div`
   border-radius: 16px;
   border: 1px solid rgba(245, 192, 74, 0.2);
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   position: relative;
   overflow: hidden;
   min-height: 100px;
@@ -89,6 +94,10 @@ const StatCard = styled.div`
     @media (max-width: 768px) {
       transform: none;
     }
+  }
+  
+  @media (max-width: 768px) {
+    transition: none;
   }
 
   &::before {
@@ -134,8 +143,16 @@ const PrimaryButton = styled.button`
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   box-shadow: 0 4px 12px rgba(245, 192, 74, 0.3);
 
   &:hover {
@@ -169,8 +186,16 @@ const SecondaryButton = styled.button`
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
 
   &:hover {
     background: #f5c04a;
@@ -273,6 +298,10 @@ const CloseButton = styled.button`
   padding: 0.5rem;
   border-radius: 8px;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   width: 36px;
   height: 36px;
   display: flex;
@@ -310,6 +339,10 @@ const Input = styled.input`
   color: #eef5ff;
   font-size: 1rem;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   min-height: 48px;
   
   &:focus {
@@ -442,6 +475,10 @@ const RadioOption = styled.label<{ $disabled?: boolean }>`
   border-radius: 8px;
   cursor: ${props => props.$disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   opacity: ${props => props.$disabled ? 0.5 : 1};
   min-height: 52px;
   
@@ -487,6 +524,10 @@ const ConfirmButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   min-height: 48px;
   
   &:hover {
@@ -522,6 +563,10 @@ const CancelButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 768px) {
+    transition: none;
+  }
   min-height: 48px;
   
   &:hover {

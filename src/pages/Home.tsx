@@ -12,6 +12,10 @@ import PriceChart from '../components/Home/PriceChart';
 
 const HomeContainer = styled.div`
   padding: 2rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+  }
 `;
 
 const ContentGrid = styled.div`

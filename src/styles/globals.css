@@ -28,8 +28,13 @@ input, textarea {
   user-select: text;
 }
 
-/* Disable only transform animations that cause shaking on mobile */
+/* Disable all animations and transitions that cause blinking on mobile */
 @media (max-width: 768px) {
+  /* Disable all transitions on mobile to prevent blinking */
+  body:not(.loading-page) * {
+    transition: none !important;
+  }
+  
   /* Only disable transform-based hover effects that cause shaking */
   body:not(.loading-page) *:hover {
     transform: none !important;
@@ -63,6 +68,9 @@ body {
   text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Ensure proper mobile rendering */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 body {
@@ -99,10 +107,10 @@ a {
   background: #d4a843;
 }
 
-/* Smooth transitions */
-* {
+/* Smooth transitions - disabled to prevent blinking */
+/* * {
   transition: all 0.2s ease-in-out;
-}
+} */
 
 /* Focus styles */
 button:focus-visible,
