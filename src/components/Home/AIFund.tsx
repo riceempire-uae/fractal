@@ -37,6 +37,7 @@ const AIFundHeader = styled.div`
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-radius: 20px 20px 0 0;
 `;
 
 const AIFundIcon = styled.div`
