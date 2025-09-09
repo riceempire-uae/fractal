@@ -292,67 +292,6 @@ const Ftl2NextProfit = styled.div`
   opacity: 0.8;
 `;
 
-const Ftl2ToggleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background: rgba(11, 26, 43, 0.6);
-  border: 1px solid rgba(245, 192, 74, 0.2);
-  border-radius: 6px;
-  margin-top: 0.5rem;
-`;
-
-const Ftl2ToggleLabel = styled.span`
-  font-size: 0.7rem;
-  color: #eef5ff;
-  opacity: 0.8;
-`;
-
-const Ftl2ToggleSwitch = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 32px;
-  height: 16px;
-`;
-
-const Ftl2ToggleInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  
-  &:checked + span {
-    background-color: #f5c04a;
-  }
-  
-  &:checked + span:before {
-    transform: translateX(16px);
-  }
-`;
-
-const Ftl2ToggleSlider = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 16px;
-  
-  &:before {
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 12px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-`;
 
 const Ftl2TerminateButton = styled.button`
   background: rgba(239, 68, 68, 0.1);
@@ -529,66 +468,6 @@ const MineGasButton = styled.button`
   }
 `;
 
-const ToggleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(11, 26, 43, 0.6);
-  border: 1px solid rgba(245, 192, 74, 0.2);
-  border-radius: 8px;
-`;
-
-const ToggleLabel = styled.span`
-  font-size: 0.8rem;
-  color: #eef5ff;
-  opacity: 0.8;
-`;
-
-const ToggleSwitch = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 20px;
-`;
-
-const ToggleInput = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  
-  &:checked + span {
-    background-color: #f5c04a;
-  }
-  
-  &:checked + span:before {
-    transform: translateX(20px);
-  }
-`;
-
-const ToggleSlider = styled.span`
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 20px;
-  
-  &:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-`;
 
 const RecordsList = styled.div`
   display: flex;
@@ -925,9 +804,6 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
   const [extractIndex, setExtractIndex] = useState<number | null>(null);
   const [extractableQuantity, setExtractableQuantity] = useState('55.0000');
   const [paymentMethod, setPaymentMethod] = useState('usdt');
-  const [autoMineGas, setAutoMineGas] = useState(false);
-  const [autoMineGasRecord4, setAutoMineGasRecord4] = useState(false);
-  const [autoMineGasFtl2, setAutoMineGasFtl2] = useState(false);
   const [extractMessage, setExtractMessage] = useState('');
   const [balanceExtractType, setBalanceExtractType] = useState<'ftl' | 'gas' | null>(null);
   const [showTerminateModal, setShowTerminateModal] = useState(false);
@@ -1201,17 +1077,6 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
                       <X size={14} />
                       Terminate GAS Mining
                     </Ftl2TerminateButton>
-                    <Ftl2ToggleContainer>
-                      <Ftl2ToggleLabel>Auto Mine GAS</Ftl2ToggleLabel>
-                      <Ftl2ToggleSwitch>
-                        <Ftl2ToggleInput
-                          type="checkbox"
-                          checked={autoMineGasFtl2}
-                          onChange={(e) => setAutoMineGasFtl2(e.target.checked)}
-                        />
-                        <Ftl2ToggleSlider />
-                      </Ftl2ToggleSwitch>
-                    </Ftl2ToggleContainer>
                   </>
                 ) : (
                   <BalanceButtonGroup>
@@ -1301,37 +1166,11 @@ const PassiveIncomeDetails: React.FC<PassiveIncomeDetailsProps> = ({ onNavigate 
                         Extract USDT
                       </ExtractButton>
                     )}
-                    {index === 2 && (
-                      <ToggleContainer>
-                        <ToggleLabel>Auto Mine GAS</ToggleLabel>
-                        <ToggleSwitch>
-                          <ToggleInput
-                            type="checkbox"
-                            checked={autoMineGas}
-                            onChange={(e) => setAutoMineGas(e.target.checked)}
-                          />
-                          <ToggleSlider />
-                        </ToggleSwitch>
-                      </ToggleContainer>
-                    )}
                     {index === 3 && (
                       <TerminateButton onClick={handleTerminateMining}>
                         <X size={16} />
                         Terminate GAS Mining
                       </TerminateButton>
-                    )}
-                    {index === 3 && (
-                      <ToggleContainer>
-                        <ToggleLabel>Auto Mine GAS</ToggleLabel>
-                        <ToggleSwitch>
-                          <ToggleInput
-                            type="checkbox"
-                            checked={autoMineGasRecord4}
-                            onChange={(e) => setAutoMineGasRecord4(e.target.checked)}
-                          />
-                          <ToggleSlider />
-                        </ToggleSwitch>
-                      </ToggleContainer>
                     )}
                   </RecordRow>
                 ))

@@ -5,7 +5,6 @@ import {
   DollarSign, 
   Link, 
   ArrowLeftRight, 
-  Shield, 
   ChevronRight,
   Megaphone
 } from 'lucide-react';
@@ -166,12 +165,6 @@ const ShortcutsMenu: React.FC<ShortcutsMenuProps> = ({ onNavigate }) => {
       title: t('shortcuts.ftlSwap'),
       description: t('shortcuts.ftlSwapDesc'),
       action: () => onNavigate?.('ftl-swap'),
-    },
-    {
-      icon: Shield,
-      title: t('shortcuts.securePassword'),
-      description: t('shortcuts.securePasswordDesc'),
-      action: () => onNavigate?.('security'),
     },
     {
       icon: Megaphone,
